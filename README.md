@@ -111,9 +111,9 @@ to be written...
 
 # Credits
 
-[https://github.com/tmux/tmux][1]
-[https://github.com/magicmonty/bash-git-prompt][3]
-[https://github.com/drmad/tmux-git][4]
+ - [tmux/tmux][1]
+ - [magicmonty/bash-git-prompt][3]
+ - [drmad/tmux-git][4]
 
 
 # [License](LICENSE)
