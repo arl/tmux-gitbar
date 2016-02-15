@@ -7,7 +7,7 @@
 TMUX_GIT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Load the config file.
-config_file="${TMUX_GIT_DIR}/tmux-git.conf"
+config_file="${TMUX_GIT_DIR}/tmux-gitbar.conf"
 . "$config_file"
 
 # Symbols shown in status string
