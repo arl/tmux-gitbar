@@ -154,7 +154,7 @@ do_interpolation() {
 }
 
 # Update tmux-gitstatus
-update_tmgs() {
+update_tmgb() {
 
   find_readlink
 
@@ -162,37 +162,37 @@ update_tmgs() {
   # similar names. Kudos to https://github.com/tillt for the bug report
   CWD=$($_readlink "$(pwd)")/
 
-  lastrepo_len=${#TMGS_LASTREPO}
+  lastrepo_len=${#TMGB_LASTREPO}
 
-  if [[ $TMGS_LASTREPO ]] && [ "$TMGS_LASTREPO" = "${CWD:0:$lastrepo_len}" ]; then
-    git_repo="$TMGS_LASTREPO"
+  if [[ $TMGB_LASTREPO ]] && [ "$TMGB_LASTREPO" = "${CWD:0:$lastrepo_len}" ]; then
+    git_repo="$TMGB_LASTREPO"
 
     read_git_info
 
-    tmux set-window-option "status-$TMUX_STATUS_LOCATION-attr" bright > /dev/null
-    tmux set-window-option "status-$TMUX_STATUS_LOCATION-length" 180 > /dev/null
+    tmux set-window-option "status-$TMGB_STATUS_LOCATION-attr" bright > /dev/null
+    tmux set-window-option "status-$TMGB_STATUS_LOCATION-length" 180 > /dev/null
 
     local status_string
-    status_string=$(do_interpolation "${STATUS_DEFINITION}")
-    tmux set-window-option "status-$TMUX_STATUS_LOCATION" "$status_string" > /dev/null
+    status_string=$(do_interpolation "${TMGB_STATUS_STRING}")
+    tmux set-window-option "status-$TMGB_STATUS_LOCATION" "$status_string" > /dev/null
 
   else
     find_git_repo
 
     if [[ $git_repo ]]; then
-      export TMGS_LASTREPO="$git_repo"
-      update_tmgs
+      export TMGB_LASTREPO="$git_repo"
+      update_tmgb
     else
       # Be sure to unset GIT_DIRTY's bright when leaving a repository.
       # Kudos to https://github.com/danarnold for the idea
-      tmux set-window-option "status-$TMUX_STATUS_LOCATION-attr" none > /dev/null
+      tmux set-window-option "status-$TMGB_STATUS_LOCATION-attr" none > /dev/null
 
       # Set the out-repo status
-      tmux set-window-option "status-$TMUX_STATUS_LOCATION" "$TMUX_OUTREPO_STATUS" > /dev/null
+      tmux set-window-option "status-$TMGB_STATUS_LOCATION" "$TMGB_OUTREPO_STATUS" > /dev/null
     fi
   fi
 }
 
 # Update the prompt for execute the script
-PROMPT_COMMAND="update_tmgs; $PROMPT_COMMAND"
+PROMPT_COMMAND="update_tmgb; $PROMPT_COMMAND"
 # vim: filetype=sh:tabstop=2:shiftwidth=2:expandtab
