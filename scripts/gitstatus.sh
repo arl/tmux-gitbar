@@ -3,7 +3,9 @@
 # gitstatus.sh -- produce the current git repo status on STDOUT
 # Functionally equivalent to 'gitstatus.py', but written in bash (not python).
 #
+# Original script by:
 # Alan K. Stebbens <aks@stebbens.org> [http://github.com/aks]
+# slightly modified for tmux-gitbar
 
 if [ -z "${__GIT_STATUS_CWD}" ]; then
   SOURCE="${BASH_SOURCE[0]}"

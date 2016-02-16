@@ -1,47 +1,44 @@
-# tmux-git
-# Script for showing current Git branch in Tmux status bar
+# tmux-gitbar: git status in your tmux status bar
 #
-# Created by Oliver Etchebarne - http://drmad.org/ with contributions
-# from many github users. Thank you all.
-
-TMUX_GIT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
-# Load the config file.
-config_file="${TMUX_GIT_DIR}/tmux-gitbar.conf"
-. "$config_file"
-
-# Symbols shown in status string
-readonly NO_REMOTE_TRACKING_SYMBOL="L";
-readonly BRANCH_SYMBOL="⭠";
-readonly STAGED_SYMBOL="●"
-readonly CONFLICT_SYMBOL="✖"
-readonly CHANGED_SYMBOL="✚"
-readonly UNTRACKED_SYMBOL="…"
-readonly STASHED_SYMBOL="⚑"
-readonly CLEAN_SYMBOL="✔"
-readonly AHEAD_SYMBOL="↑·"
-readonly BEHIND_SYMBOL="↓·"
-readonly PREHASH_SYMBOL=":"
+# Created by Aurélien Rainone
+# github.com/aurelien-rainone/tmux-gitbar
 
 # Additional keywords for tmux status string
 readonly BRANCH_KWD="\#{git_branch}"
 readonly REMOTE_KWD="\#{git_remote}"
 readonly UPSTREAM_KWD="\#{git_upstream}"
 readonly FLAGS_KWD="\#{git_flags}"
-readonly CLEAN_KWD="\#{git_clean}"
 
-# Tmux format strings for specific git vars
-readonly BRANCH_FMT="#[fg=white]"
-readonly UPSTREAM_FMT="#[fg=cyan]"
-readonly REMOTE_FMT="#[fg=cyan]"
-readonly CLEAN_FMT="#[fg=green,bold]"
-readonly STAGED_FMT="#[fg=red,bold]"
-readonly CONFLICTS_FMT="#[fg=red,bold]"
-readonly CHANGED_FMT="#[fg=blue,bold]"
-readonly STASHED_FMT="#[fg=blue,bold]"
-readonly UNTRACKED_FMT="#[fg=magenta,bold]"
-readonly RESET_FMT="#[fg=default]"
+# Default symbols shown in status string. Can be redefined in tmux-gitbar.conf
+NO_REMOTE_TRACKING_SYMBOL="L";
+BRANCH_SYMBOL="⭠";
+STAGED_SYMBOL="●"
+CONFLICT_SYMBOL="✖"
+CHANGED_SYMBOL="✚"
+UNTRACKED_SYMBOL="…"
+STASHED_SYMBOL="⚑"
+CLEAN_SYMBOL="✔"
+AHEAD_SYMBOL="↑·"
+BEHIND_SYMBOL="↓·"
+PREHASH_SYMBOL=":"
 
+# Defaut Tmux format strings for Git bar components. Can be redefined in 
+# tmux-gitbar.conf
+BRANCH_FMT="#[fg=white]"
+UPSTREAM_FMT="#[fg=cyan]"
+REMOTE_FMT="#[fg=cyan]"
+CLEAN_FMT="#[fg=green,bold]"
+STAGED_FMT="#[fg=red,bold]"
+CONFLICTS_FMT="#[fg=red,bold]"
+CHANGED_FMT="#[fg=blue,bold]"
+STASHED_FMT="#[fg=blue,bold]"
+UNTRACKED_FMT="#[fg=magenta,bold]"
+RESET_FMT="#[fg=default]"
+
+# Load the config file. overwriting any redefined variables
+readonly TMUX_GIT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+config_file="${TMUX_GIT_DIR}/tmux-gitbar.conf"
+. "$config_file"
 
 # Use a different readlink according the OS.
 # Kudos to https://github.com/npauzenga for the PR
@@ -126,35 +123,34 @@ do_interpolation() {
     fi
   }
 
-  # Create the 3 main components
+  # Create the 3 branch components
   branch="${BRANCH_FMT}${BRANCH_SYMBOL} ${git_branch}${RESET_FMT}"
   remote="${REMOTE_FMT}${git_remote}${RESET_FMT}"
   upstream="${UPSTREAM_FMT}${git_upstream}${RESET_FMT}"
 
-  # Create the 'clean repository' string
-  clean=$(chk_gitvar 'clean' '-eq 1' "${CLEAN_FMT}${CLEAN_SYMBOL}${RESET_FMT} ")
-
-  # Create the git vars string components
+  # Create the git flags components
+  clean_flag=$(chk_gitvar 'clean' '-eq 1' "${CLEAN_FMT}${CLEAN_SYMBOL}${RESET_FMT} ")
   staged=$(chk_gitvar 'staged' '-ne 0' "${STAGED_FMT}${STAGED_SYMBOL} ${git_num_staged}${RESET_FMT} ")
   conflicts=$(chk_gitvar 'conflicts' '-ne 0' "${CONFLICTS_FMT}${CONFLICT_SYMBOL} ${git_num_conflicts}${RESET_FMT} ")
   changed=$(chk_gitvar 'changed' '-ne 0' "${CHANGED_FMT}${CHANGED_SYMBOL} ${git_num_changed}${RESET_FMT} ")
   stashed=$(chk_gitvar 'stashed' '-ne 0' "${STASHED_FMT}${STASHED_SYMBOL} ${git_num_stashed}${RESET_FMT} ")
   untracked=$(chk_gitvar 'untracked' '-ne 0' "${UNTRACKED_FMT}${UNTRACKED_SYMBOL} ${git_num_untracked}${RESET_FMT} ")
-  flags=$(chk_gitvar 'clean' '-eq 0' "| ${staged}${conflicts}${changed}${stashed}${untracked}${RESET_FMT} ")
+  dirty_flags=$(chk_gitvar 'clean' '-eq 0' "${staged}${conflicts}${changed}${stashed}${untracked} ")
+
+  flags="| ${clean_flag}${dirty_flags}"
 
   # Put it all together
   local in="$1"
   local s1="${in/$BRANCH_KWD/$branch}"
   local s2="${s1/$REMOTE_KWD/$remote}"
   local s3="${s2/$UPSTREAM_KWD/$upstream}"
-  local s4="${s3/$FLAGS_KWD/$flags}"
-  local out="${s4/$CLEAN_KWD/$clean}"
+  local out="${s3/$FLAGS_KWD/$flags}"
 
   echo "$out"
 }
 
-# Update tmux-gitstatus
-update_tmgb() {
+# Update tmux git status bar, called within PROMPT_COMMAND
+update_gitbar() {
 
   find_readlink
 
@@ -181,7 +177,7 @@ update_tmgb() {
 
     if [[ $git_repo ]]; then
       export TMGB_LASTREPO="$git_repo"
-      update_tmgb
+      update_gitbar
     else
       # Be sure to unset GIT_DIRTY's bright when leaving a repository.
       # Kudos to https://github.com/danarnold for the idea
@@ -194,5 +190,4 @@ update_tmgb() {
 }
 
 # Update the prompt for execute the script
-PROMPT_COMMAND="update_tmgb; $PROMPT_COMMAND"
-# vim: filetype=sh:tabstop=2:shiftwidth=2:expandtab
+PROMPT_COMMAND="update_gitbar; $PROMPT_COMMAND"
