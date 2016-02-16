@@ -76,13 +76,9 @@ components, colors, style, symbols.
 This variable defines the structure of the git status bar.  
 The default value is:
 
-    "#{git_clean} #{git_branch} - #{git_upstream} - #{git_remote} #{git_flags}"
+    "#{git_branch} - #{git_upstream} - #{git_remote} #{git_flags}"
 
 #### Status string keywords
-
-##### `#{git_clean}`
-
-Expands to ✔ if current working tree is *clean*.
 
 ##### `#{git_branch}`
 
@@ -104,7 +100,8 @@ Can either be:
 
 ##### `#{git_flags}`
 
-The `#{git_flags}` keyword expands into a succession of fields, each
+Expands to ✔ if current working tree is *clean*. If that's not the case
+the `#{git_flags}` keyword expands into a succession of fields, each
 representing a different piece of information about your git working tree:
  - ●n: there are n staged files
  - ✖n: there are n files with merge conflicts
@@ -112,7 +109,7 @@ representing a different piece of information about your git working tree:
  - …n: there are n untracked files
  - ⚑n: there are n stash entries
 
-The fields where the number would be 0 are ignored.  
+The fields where the number would be 0 are not displayed.  
 **Note:**
 If current working tree is *clean*, `#{git_flags}` is an empty string.
 
@@ -128,6 +125,19 @@ This defines what is shown instead of the git status bar whenever the current
 directory is not a Git working tree.  
 The default is any pre-exiting status-line.
 
+### Customize colors / styles
+
+Colors and styles can be modified. To do so simply redefine, anywhere in
+`tmux-gitbar.conf`, the variable you wish to modify; its default value will be
+overwritten. Colors and styles variables end with `_FMT`, like `BRANCH_FMT` and
+they represent tmux format strings.
+
+### Customize symbols
+
+Git flags symbols, the branch symbol, etc. can be modified. To do so simply
+redefine, anywhere in `tmux-gitbar.conf`, the symbol you wish to modify; its
+default value will be overwritten. Symbol variables end with `_SYMBOL`, like
+`BRANCH_SYMBOL`.
 
 # Credits
 
