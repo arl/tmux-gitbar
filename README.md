@@ -125,14 +125,14 @@ This defines what is shown instead of the git status bar whenever the current
 directory is not a Git working tree.  
 The default is any pre-exiting status-line.
 
-### Customize colors / styles
+### Customizing colors / styles
 
 Colors and styles can be modified. To do so simply redefine, anywhere in
 `tmux-gitbar.conf`, the variable you wish to modify; its default value will be
 overwritten. Colors and styles variables end with `_FMT`, like `BRANCH_FMT` and
 they represent tmux format strings.
 
-### Customize symbols
+### Customizing symbols
 
 Git flags symbols, the branch symbol, etc. can be modified. To do so simply
 redefine, anywhere in `tmux-gitbar.conf`, the symbol you wish to modify; its
