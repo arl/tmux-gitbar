@@ -32,6 +32,15 @@ Add this to your `.bashrc` (or `.bash_profile`):
 If you do dotfiles, you can easily add **tmux-gitbar**, either directly or
 through a git submodule, like I did for [my dotfiles repo][5]. 
 
+## Font
+
+The appearance and availability of some symbols, like the branch symbol used in
+the default configuration, depend on your terminal font. If one symbol doesn't
+appear as it should or as you would like, just replace it. See the
+**Customizing** section of this README.
+
+FYI, the font used in the screenshots is [consolas-font-for-powerline][6].
+
 # Documentation
 
 ## Examples:
@@ -65,7 +74,7 @@ through a git submodule, like I did for [my dotfiles repo][5].
 
 ## Customizing the status bar
 
-Every customization should take place in `tmux-gitbar.conf`.
+Every customization should take place in `tmux-gitbar.conf`.  
 
 tmux-gitbar introduces some new keywords that can be added to the tmux-status bar
 definition. Everything can be customized to suit your taste: status
@@ -153,4 +162,5 @@ default value will be overwritten. Symbol variables end with `_SYMBOL`, like
 [3]: https://github.com/magicmonty/bash-git-prompt
 [4]: https://github.com/drmad/tmux-git
 [5]: https://github.com/aurelien-rainone/dotfiles
+[6]: https://github.com/runsisi/consolas-font-for-powerline
 
