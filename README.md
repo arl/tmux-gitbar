@@ -128,7 +128,8 @@ If current working tree is *clean*, `#{git_flags}` is an empty string.
 `TMGB_STATUS_LOCATION` defines the location of the tmux gitbar.  
 Accepted values are `right` or `left`, default is `right`
 
-### `TMUX_OUTREPO_STATUS`
+
+### `TMGB_OUTREPO_STATUS`
 
 This defines what is shown instead of the git status bar whenever the current
 directory is not a Git working tree.  
@@ -140,6 +141,27 @@ Colors and styles can be modified. To do so simply redefine, anywhere in
 `tmux-gitbar.conf`, the variable you wish to modify; its default value will be
 overwritten. Colors and styles variables end with `_FMT`, like `BRANCH_FMT` and
 they represent tmux format strings.
+
+#### `TMGB_BG_COLOR`
+
+This defines the background color of the git status bar.
+
+#### `TMGB_FG_COLOR`
+
+This defines the foreground color of the git status bar.
+
+#### `TMGB_OUTREPO_BG_COLOR`
+
+This defines the background color of the git status bar whenever the current
+directory is not a Git working tree.  
+The default is any pre-exiting background color.
+
+#### `TMGB_OUTREPO_FG_COLOR`
+
+This defines the foreground color of the git status bar whenever the current
+directory is not a Git working tree.  
+The default is any pre-exiting foreground color.
+
 
 ### Customizing symbols
 
