@@ -36,8 +36,8 @@ UNTRACKED_FMT="#[fg=magenta,bold]"
 RESET_FMT="#[fg=default]"
 
 # Load the config file. overwriting any redefined variables
-readonly TMUX_GIT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-config_file="${TMUX_GIT_DIR}/tmux-gitbar.conf"
+readonly TMGB_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+config_file="${TMGB_DIR}/tmux-gitbar.conf"
 . "$config_file"
 
 # Use a different readlink according the OS.
@@ -85,7 +85,7 @@ read_git_info() {
   export __GIT_STATUS_CWD=$(tmux display-message -p -F "#{pane_current_path}")
 
   local -a git_status_fields
-  git_status_fields=($("$TMUX_GIT_DIR/scripts/gitstatus.sh" 2>/dev/null))
+  git_status_fields=($("$TMGB_DIR/scripts/gitstatus.sh" 2>/dev/null))
 
   git_branch="$(replace_branch_symbols ${git_status_fields[0]})"
   git_remote="$(replace_branch_symbols ${git_status_fields[1]})"
