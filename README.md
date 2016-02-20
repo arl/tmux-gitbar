@@ -68,7 +68,8 @@ FYI, the font used in the screenshots is [consolas-font-for-powerline][6].
 ![tmux-gitbar demo](http://aurelien-rainone.github.io/tmux-gitbar/example4.png)
  - on branch master
  - remote tracking origin/master
- - local master and origin/master branches have diverged, remote from one commit, local by one commit.
+ - local master and origin/master branches have diverged, remote
+   from one commit, local by one commit.
  - there is one merge conflict
 
 
@@ -77,13 +78,19 @@ FYI, the font used in the screenshots is [consolas-font-for-powerline][6].
 Every customization should take place in `tmux-gitbar.conf`.  
 
 tmux-gitbar introduces some new keywords that can be added to the tmux-status bar
-definition. Everything can be customized to suit your taste: status
-components, colors, style, symbols.
+definition. Everything can be customized:
+ - status string content
+ - colors
+ - style
+ - symbols
 
-### `TMGB_STATUS_STRING`
+### Status string content
 
-This variable defines the structure of the git status bar.  
-The default value is:
+#### `TMGB_STATUS_STRING`
+
+This variable defines the content of the git status bar, represented by
+different keywords.
+Default value:
 
     "#{git_branch} - #{git_upstream} - #{git_remote} #{git_flags}"
 
@@ -102,34 +109,34 @@ Informs about the remote tracking branch, can be:
 ##### `#{git_remote}`
 
 Can either be:
- - ↑n: ahead of remote by n commits
- - ↓n: behind remote by n commits
- - ↓m↑n: branches diverged, other by m commits, yours by n commits
- - L: local branch, not remotely tracked
+ - `↑n`: ahead of remote by n commits
+ - `↓n`: behind remote by n commits
+ - `↓m↑n`: branches diverged, other by m commits, yours by n commits
+ - `L`: local branch, not remotely tracked
 
 ##### `#{git_flags}`
 
-Expands to ✔ if current working tree is *clean*. If that's not the case
+Expands to `✔` if current working tree is *clean*. If that's not the case
 the `#{git_flags}` keyword expands into a succession of fields, each
 representing a different piece of information about your git working tree:
- - ●n: there are n staged files
- - ✖n: there are n files with merge conflicts
- - ✚n: there are n changed but unstaged files
- - …n: there are n untracked files
- - ⚑n: there are n stash entries
+ - `●n`: there are n staged files
+ - `✖n`: there are n files with merge conflicts
+ - `✚n`: there are n changed but unstaged files
+ - `…n`: there are n untracked files
+ - `⚑n`: there are n stash entries
 
 The fields where the number would be 0 are not displayed.  
 **Note:**
 If current working tree is *clean*, `#{git_flags}` is an empty string.
 
 
-### `TMGB_STATUS_LOCATION`
+#### `TMGB_STATUS_LOCATION`
 
 `TMGB_STATUS_LOCATION` defines the location of the tmux gitbar.  
 Accepted values are `right` or `left`, default is `right`
 
 
-### `TMGB_OUTREPO_STATUS`
+#k### `TMGB_OUTREPO_STATUS`
 
 This defines what is shown instead of the git status bar whenever the current
 directory is not a Git working tree.  
