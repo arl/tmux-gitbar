@@ -9,7 +9,8 @@ readonly REMOTE_KWD="\#{git_remote}"
 readonly UPSTREAM_KWD="\#{git_upstream}"
 readonly FLAGS_KWD="\#{git_flags}"
 
-# Default symbols shown in status string. Can be redefined in tmux-gitbar.conf
+# Symbols shown in status string.
+# Can be redefined here, or preferably in tmux-gitbar.conf
 NO_REMOTE_TRACKING_SYMBOL="L";
 BRANCH_SYMBOL="⭠";
 STAGED_SYMBOL="●"
@@ -22,8 +23,8 @@ AHEAD_SYMBOL="↑·"
 BEHIND_SYMBOL="↓·"
 PREHASH_SYMBOL=":"
 
-# Defaut Tmux format strings for Git bar components. Can be redefined in 
-# tmux-gitbar.conf
+# Defaut Tmux format strings for Git bar components.
+# Can be redefined here, or preferably in tmux-gitbar.conf
 BRANCH_FMT="#[fg=white]"
 UPSTREAM_FMT="#[fg=cyan]"
 REMOTE_FMT="#[fg=cyan]"
@@ -67,6 +68,7 @@ find_git_repo() {
   return
 }
 
+# Search branch info and replace with symbols
 replace_branch_symbols() {
 
   local s1; local s2; local s3
