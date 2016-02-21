@@ -36,10 +36,31 @@ STASHED_FMT="#[fg=blue,bold]"
 UNTRACKED_FMT="#[fg=magenta,bold]"
 RESET_FMT="#[fg=default]"
 
+TMGB_OUTREPO_STATUS=""
+TMGB_OUTREPO_FG_COLOR=""
+TMGB_OUTREPO_BG_COLOR=""
+
 # Load the config file. overwriting any redefined variables
 readonly TMGB_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 config_file="${TMGB_DIR}/tmux-gitbar.conf"
 . "$config_file"
+
+# Save status bar settings so that we can reset it later
+save_statusbar() {
+
+  # Previous status string. Idea from https://github.com/danarnold
+  TMGB_OUTREPO_STATUS=$(tmux show -vg "status-$TMGB_STATUS_LOCATION")
+
+  # Previous foreground color
+  TMGB_OUTREPO_FG_COLOR=$(tmux show -vg "status-$TMGB_STATUS_LOCATION-fg")
+
+  # Previous background color
+  TMGB_OUTREPO_BG_COLOR=$(tmux show -vg "status-$TMGB_STATUS_LOCATION-bg")
+
+  readonly TMGB_OUTREPO_STATUS
+  readonly TMGB_OUTREPO_FG_COLOR
+  readonly TMGB_OUTREPO_BG_COLOR
+}
 
 # Use a different readlink according the OS.
 # Kudos to https://github.com/npauzenga for the PR
@@ -151,6 +172,18 @@ do_interpolation() {
   echo "$out"
 }
 
+# Reset tmux status bar to what it was before tmux-gitbar touched it
+reset_statusbar() {
+  # Be sure to unset GIT_DIRTY's bright when leaving a repository.
+  # Kudos to https://github.com/danarnold for the idea
+  tmux set-window-option "status-$TMGB_STATUS_LOCATION-attr" none > /dev/null
+  tmux set-window-option "status-$TMGB_STATUS_LOCATION-bg" "$TMGB_OUTREPO_BG_COLOR" > /dev/null
+  tmux set-window-option "status-$TMGB_STATUS_LOCATION-fg" "$TMGB_OUTREPO_FG_COLOR" > /dev/null
+
+  # Set the out-repo status
+  tmux set-window-option "status-$TMGB_STATUS_LOCATION" "$TMGB_OUTREPO_STATUS" > /dev/null
+}
+
 # Update tmux git status bar, called within PROMPT_COMMAND
 update_gitbar() {
 
@@ -181,16 +214,10 @@ update_gitbar() {
 
     if [[ $git_repo ]]; then
       export TMGB_LASTREPO="$git_repo"
+      save_statusbar
       update_gitbar
     else
-      # Be sure to unset GIT_DIRTY's bright when leaving a repository.
-      # Kudos to https://github.com/danarnold for the idea
-      tmux set-window-option "status-$TMGB_STATUS_LOCATION-attr" none > /dev/null
-      tmux set-window-option "status-$TMGB_STATUS_LOCATION-bg" "$TMGB_OUTREPO_BG_COLOR" > /dev/null
-      tmux set-window-option "status-$TMGB_STATUS_LOCATION-fg" "$TMGB_OUTREPO_FG_COLOR" > /dev/null
-
-      # Set the out-repo status
-      tmux set-window-option "status-$TMGB_STATUS_LOCATION" "$TMGB_OUTREPO_STATUS" > /dev/null
+      reset_statusbar
     fi
   fi
 }
