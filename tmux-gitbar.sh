@@ -176,9 +176,13 @@ do_interpolation() {
 reset_statusbar() {
   # Be sure to unset GIT_DIRTY's bright when leaving a repository.
   # Kudos to https://github.com/danarnold for the idea
-  tmux set-window-option "status-$TMGB_STATUS_LOCATION-attr" none > /dev/null
-  tmux set-window-option "status-$TMGB_STATUS_LOCATION-bg" "$TMGB_OUTREPO_BG_COLOR" > /dev/null
-  tmux set-window-option "status-$TMGB_STATUS_LOCATION-fg" "$TMGB_OUTREPO_FG_COLOR" > /dev/null
+    tmux set-window-option "status-$TMGB_STATUS_LOCATION-attr" none > /dev/null
+  if [ -n "$TMGB_OUTREPO_BG_COLOR" ]; then
+    tmux set-window-option "status-$TMGB_STATUS_LOCATION-bg" "$TMGB_OUTREPO_BG_COLOR" > /dev/null
+  fi
+  if [ -n "$TMGB_OUTREPO_FG_COLOR" ]; then
+    tmux set-window-option "status-$TMGB_STATUS_LOCATION-fg" "$TMGB_OUTREPO_FG_COLOR" > /dev/null
+  fi
 
   # Set the out-repo status
   tmux set-window-option "status-$TMGB_STATUS_LOCATION" "$TMGB_OUTREPO_STATUS" > /dev/null
