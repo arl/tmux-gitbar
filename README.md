@@ -1,6 +1,14 @@
 tmux-gitbar: Git in tmux status bar
 ============
 
+**WARNING: Breaking change**  
+In case you were already using tmux-gitbar, with a version prior to v1.0:
+ - You don't need any more to modify `.bashrc` (or wherever you sourced
+   tmux-gitbar.sh)
+ - However, you have a line to add to your `.tmux.conf` file, detail in the
+   [Installing](#installing) section
+<br><br>
+
 ![tmux-gitbar
 demo](http://aurelien-rainone.github.io/tmux-gitbar/tmux-gitbar-demo.gif)
 
@@ -9,52 +17,84 @@ tmux status bar.
 
 # Features
 
-Branches Information:
- - the names of **local** and **remote** branches
+Show **Local** and **Remote** branches information:
+ - names of **local** and **remote** branches
  - divergence with upstream in number of commits
 
-Working tree status:
+**Working tree status:**
  - immediately see if your working tree is *clean*
  - number of changed, stashed, untracked files
  - conflicts
  - stash
 
+
 # Table of Contents
 
- * [Installing](#installing)
-   * [Font](#font)
- * [Examples](#examples)
- * [Documentation](#documentation)
-   * [Status string](#status-string)
-   * [tmux-gitbar keywords](#tmux-gitbar-keywords)
-   * [Status bar location](#status-bar-location)
-   * [Status bar color](#status-bar-color)
-   * [Symbols](#symbols)
- * [Credits](#credits)
- * [License](#license)
+* [Installing](#installing)
+  * [Installing to the default location](#installing-to-the-default-location)
+  * [Installing to another location](#installing-to-another-location)
+  * [Font](#font)
+* [Examples](#examples)
+* [Documentation](#documentation)
+  * [Status string](#status-string)
+  * [tmux-gitbar keywords](#tmux-gitbar-keywords)
+  * [Status bar location](#status-bar-location)
+  * [Status bar color](#status-bar-color)
+  * [Symbols](#symbols)
+* [Credits](#credits)
+* [License](#license)
+* [Changelog](#changelog)
 
 
 # Installing
 
-Get the code:
+You can install tmux-gitbar anywhere you want, although it's slightly easier to
+install it to the default location `$HOME/.tmux-gitbar`
+
+## Installing to the default location
+
+**Get the code**
 
 ```console
-git clone https://github.com/aurelien-rainone/tmux-gitbar.git
+git clone https://github.com/aurelien-rainone/tmux-gitbar.git ~/.tmux-gitbar
 ```
 
-And add this to your `.bashrc`:
+**Add this line to your `tmux.conf`**
 
 ```console
-if [[ $TMUX ]]; then source /path/to/tmux-gitbar/tmux-gitbar.sh; fi
+source-file "$HOME/.tmux-gitbar/tmux-gitbar.tmux"
 ```
+
+## Installing to another location
+
+Let's say you prefer to install **tmux-gitbat** in
+`/path/to/tmux-gitbar`.
+
+**Get the code**
+
+```console
+git clone https://github.com/aurelien-rainone/tmux-gitbar.git /path/to/tmux-gitbar
+```
+
+**Add those 2 lines to your `tmux.conf`**
+
+```console
+TMUX_GITBAR_DIR="/path/to/tmux-gitbar"
+source-file "/path/to/tmux-gitbar/tmux-gitbar.tmux"
+```
+
+**Important:** `TMUX_GITBAR_DIR` environment variable must be set before sourcing
+`tmux-gitbar.tmux`.  
+**Note:** Do not include the trailing slash.
 
 ## Font
 
-If one or some symbols don't appear as they should or just if you'd
+If one symbol or more don't appear as they should or just if you'd
 like to change them, have a look at the [Symbols section](#symbols) of this
 README
 
 FYI, the font used in the screenshots is [consolas-font-for-powerline][5].
+
 
 # Examples
 
@@ -139,7 +179,6 @@ Flags with number being 0 are not shown.
 The working tree is considered *clean* if all flags are 0, in this case a `✔`
 is shown.
 
-
 ## Status bar location
 
 Accepts `left` of `right`. Default:
@@ -157,11 +196,11 @@ tmux-gitbar background color. Default is black.
 
  tmux-gitbar foreground color. Default is white.
 
-
 ## Symbols
 
 Default symbols are declared at the top of `tmux-gitbar.sh` and they can be
 redefined in `tmux-gitbar.conf`.
+
 
 # Credits
 
@@ -173,9 +212,24 @@ Other credits for :
  - [tmux/tmux][1]
  - [gh-md-toc][6]
 
+
 # License
 
 **tmux-gitbar** is licensed under GNU GPLv3.
+
+
+# Changelog
+
+### v1.0, 2016-02-25
+- **Breaking change**: no more need to modify `.bashrc`
+- `PROMPT_COMMAND` now calls a script, not a shell function
+
+### v0.1, 2016-02-25
+- Include clean flags into `#{git_flags}` keyword
+- Rework README, add screenshots, screencast
+
+### v0.0.1, 2016-02-15
+- Initial version
 
 [1]: https://github.com/tmux/tmux
 [2]: https://github.com/aurelien-rainone/tmux-gitbar
