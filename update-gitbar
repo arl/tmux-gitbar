@@ -40,10 +40,12 @@ TMGB_OUTREPO_STATUS=""
 TMGB_OUTREPO_FG_COLOR=""
 TMGB_OUTREPO_BG_COLOR=""
 
-# Load the config file. overwriting any redefined variables
-readonly TMGB_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-config_file="${TMGB_DIR}/tmux-gitbar.conf"
-. "$config_file"
+# Load the config file
+load_config() {
+  readonly TMGB_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+  config_file="${TMGB_DIR}/tmux-gitbar.conf"
+  source "$config_file"
+}
 
 # Save status bar settings so that we can reset it later
 save_statusbar() {
@@ -226,5 +228,11 @@ update_gitbar() {
   fi
 }
 
-# Update the prompt for execute the script
-PROMPT_COMMAND="update_gitbar; $PROMPT_COMMAND"
+main () {
+  load_config
+  update_gitbar
+}
+
+main
+
+# vim: ft=sh
