@@ -220,11 +220,11 @@ Other credits for :
 
 # Changelog
 
-### v1.0, 2016-02-25
+### v1.0.0, 2016-02-25
 - **Breaking change**: no more need to modify `.bashrc`
 - `PROMPT_COMMAND` now calls a script, not a shell function
 
-### v0.1, 2016-02-25
+### v0.1.0, 2016-02-25
 - Include clean flags into `#{git_flags}` keyword
 - Rework README, add screenshots, screencast
 
