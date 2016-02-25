@@ -2,7 +2,7 @@ tmux-gitbar: Git in tmux status bar
 ============
 
 **WARNING: Breaking change**  
-In case you were already using tmux-gitbar, with a version prior to v1.0:
+In case you were already using tmux-gitbar, with a version prior to v1.0.0:
  - You don't need any more to modify `.bashrc` (or wherever you sourced
    tmux-gitbar.sh)
  - However, you have a line to add to your `.tmux.conf` file, detail in the
