@@ -1,4 +1,4 @@
-# tmux-gitbar: git status in your tmux status bar
+# tmux-gitbar: Git in tmux status bar
 #
 # Created by Aurélien Rainone
 # github.com/aurelien-rainone/tmux-gitbar
