@@ -220,6 +220,13 @@ Other credits for :
 
 # Changelog
 
+### v1.0.2, 2016-02-29
+- Fix Error on tmux.conf reload
+
+### v1.0.1, 2016-02-25
+- Remove vim modelines
+- more portable shebangs
+
 ### v1.0.0, 2016-02-25
 - **Breaking change**: no more need to modify `.bashrc`
 - `PROMPT_COMMAND` now calls a script, not a shell function
