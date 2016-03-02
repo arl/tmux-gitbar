@@ -220,6 +220,9 @@ Other credits for :
 
 # Changelog
 
+### v1.0.3, 2016-03-02
+- Protect from multiple prompt_command calls
+
 ### v1.0.2, 2016-02-29
 - Fix Error on tmux.conf reload
 
