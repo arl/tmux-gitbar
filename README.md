@@ -224,6 +224,11 @@ Other credits for :
 
 # Changelog
 
+### v1.1.0, 2016-03-06
+- Reorganize code to make testing easier
+- Add unit testing
+- Add travis continuous integration
+
 ### v1.0.3, 2016-03-02
 - Protect from multiple prompt_command calls
 
