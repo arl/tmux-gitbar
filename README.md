@@ -1,13 +1,8 @@
+
+[![Build status](https://travis-ci.org/aurelien-rainone/tmux-gitbar.svg?branch=master)](https://travis-ci.org/aurelien-rainone/tmux-gitbar)
+
 tmux-gitbar: Git in tmux status bar
 ============
-
-**WARNING: Breaking change**  
-In case you were already using tmux-gitbar, with a version prior to v1.0.0:
- - You don't need any more to modify `.bashrc` (or wherever you sourced
-   tmux-gitbar.sh)
- - However, you have a line to add to your `.tmux.conf` file, detail in the
-   [Installing](#installing) section
-<br><br>
 
 ![tmux-gitbar
 demo](http://aurelien-rainone.github.io/tmux-gitbar/tmux-gitbar-demo.gif)
@@ -26,6 +21,15 @@ Show **Local** and **Remote** branches information:
  - number of changed, stashed, untracked files
  - conflicts
  - stash
+
+<br>
+**WARNING: Breaking change**  
+In case you were already using tmux-gitbar, with a version prior to v1.0.0:
+ - You don't need any more to modify `.bashrc` (or wherever you sourced
+   tmux-gitbar.sh)
+ - However, you have a line to add to your `.tmux.conf` file, detail in the
+   [Installing](#installing) section
+<br><br>
 
 
 # Table of Contents

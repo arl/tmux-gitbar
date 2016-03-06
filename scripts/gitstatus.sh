@@ -7,17 +7,13 @@
 # Alan K. Stebbens <aks@stebbens.org> [http://github.com/aks]
 # slightly modified for tmux-gitbar
 
-if [ -z "${__GIT_STATUS_CWD}" ]; then
-  SOURCE="${BASH_SOURCE[0]}"
-  while [ -h "${SOURCE}" ]; do
-    DIR="$( cd -P "$( dirname "${SOURCE}" )" && pwd )"
-    SOURCE="$(readlink "${SOURCE}")"
-    [[ $SOURCE != /* ]] && SOURCE="${DIR}/${SOURCE}"
-  done
-  __GIT_STATUS_CWD="$( cd -P "$( dirname "${SOURCE}" )" && pwd )"
+dir="$1"
+if [ ! -d "$1" ]; then
+  exit 1
 fi
+cd "$dir" > /dev/null
 
-gitstatus=$( LC_ALL=C git status --untracked-files=all --porcelain --branch )
+readonly gitstatus=$( LC_ALL=C git status --untracked-files=all --porcelain --branch )
 
 # if the status is fatal, exit now
 [[ "$?" -ne 0 ]] && exit 0
@@ -104,5 +100,3 @@ printf "%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n" \
   $num_untracked \
   $num_stashed \
   $clean
-
-exit
