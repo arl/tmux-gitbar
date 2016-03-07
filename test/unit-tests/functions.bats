@@ -5,7 +5,7 @@
 # Created by Aurélien Rainone
 # github.com/aurelien-rainone/tmux-gitbar
 
-load test_helper
+load "../test_helper"
 load "${ROOTDIR}/lib/tmux-gitbar.sh"
 load "${ROOTDIR}/scripts/helpers.sh"
 

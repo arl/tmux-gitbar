@@ -5,13 +5,13 @@
 # Created by Aurélien Rainone
 # github.com/aurelien-rainone/tmux-gitbar
 
-load test_helper
+load "../test_helper"
 load "${ROOTDIR}/lib/tmux-gitbar.sh"
 load "${ROOTDIR}/scripts/helpers.sh"
 
 setup() {
   create_test_repo
-  pushd . > /dev/null
+  backup_pwd
 }
 
 @test "detect when in a git working tree" {
@@ -151,6 +151,6 @@ setup() {
 }
 
 teardown() {
-  popd > /dev/null
+  restore_pwd
   cleanup_test_repo
 }
