@@ -56,7 +56,7 @@ save_statusbar() {
   TMGB_OUTREPO_STATUS=$(tmux show -vg "status-$TMGB_STATUS_LOCATION")
   readonly TMGB_OUTREPO_STATUS
 
-  # Previous style
+  # Previous status string style. Thanks to https://github.com/aizimmer
   TMGB_OUTREPO_STYLE=$(tmux show -vg "status-$TMGB_STATUS_LOCATION-style")
   readonly TMGB_OUTREPO_STYLE
 }
