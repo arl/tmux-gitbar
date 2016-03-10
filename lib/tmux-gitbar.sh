@@ -42,8 +42,7 @@ UNTRACKED_FMT="#[fg=magenta,bold]"
 RESET_FMT="#[fg=default]"
 
 TMGB_OUTREPO_STATUS=""
-TMGB_OUTREPO_FG_COLOR=""
-TMGB_OUTREPO_BG_COLOR=""
+TMGB_OUTREPO_STYLE=""
 
 # Load the config file
 load_config() {
@@ -57,13 +56,9 @@ save_statusbar() {
   TMGB_OUTREPO_STATUS=$(tmux show -vg "status-$TMGB_STATUS_LOCATION")
   readonly TMGB_OUTREPO_STATUS
 
-  # Previous foreground color
-  TMGB_OUTREPO_FG_COLOR=$(tmux show -vg "status-$TMGB_STATUS_LOCATION-fg")
-  readonly TMGB_OUTREPO_FG_COLOR
-
-  # Previous background color
-  TMGB_OUTREPO_BG_COLOR=$(tmux show -vg "status-$TMGB_STATUS_LOCATION-bg")
-  readonly TMGB_OUTREPO_BG_COLOR
+  # Previous status string style. Thanks to https://github.com/aizimmer
+  TMGB_OUTREPO_STYLE=$(tmux show -vg "status-$TMGB_STATUS_LOCATION-style")
+  readonly TMGB_OUTREPO_STYLE
 }
 
 # Find the top-level directory of the current Git working tree
@@ -158,14 +153,8 @@ do_interpolation() {
 
 # Reset tmux status bar to what it was before tmux-gitbar touched it
 reset_statusbar() {
-  # Be sure to unset GIT_DIRTY's bright when leaving a repository.
-  # Kudos to https://github.com/danarnold for the idea
-  tmux set-window-option "status-$TMGB_STATUS_LOCATION-attr" none > /dev/null
-  if [ -n "$TMGB_OUTREPO_BG_COLOR" ]; then
-    tmux set-window-option "status-$TMGB_STATUS_LOCATION-bg" "$TMGB_OUTREPO_BG_COLOR" > /dev/null
-  fi
-  if [ -n "$TMGB_OUTREPO_FG_COLOR" ]; then
-    tmux set-window-option "status-$TMGB_STATUS_LOCATION-fg" "$TMGB_OUTREPO_FG_COLOR" > /dev/null
+  if [ -n "$TMGB_OUTREPO_STYLE" ]; then
+    tmux set-window-option "status-$TMGB_STATUS_LOCATION-style" "$TMGB_OUTREPO_STYLE" > /dev/null
   fi
 
   # Set the out-repo status
@@ -179,9 +168,7 @@ update_gitbar() {
 
     read_git_info
 
-    tmux set-window-option "status-$TMGB_STATUS_LOCATION-fg" "$TMGB_FG_COLOR" > /dev/null
-    tmux set-window-option "status-$TMGB_STATUS_LOCATION-bg" "$TMGB_BG_COLOR" > /dev/null
-    tmux set-window-option "status-$TMGB_STATUS_LOCATION-attr" bright > /dev/null
+    tmux set-window-option "status-$TMGB_STATUS_LOCATION-style" "$TMGB_STYLE" > /dev/null
     tmux set-window-option "status-$TMGB_STATUS_LOCATION-length" 180 > /dev/null
 
     local status_string
