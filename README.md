@@ -59,13 +59,13 @@ install it to the default location `$HOME/.tmux-gitbar`
 
 **Get the code**
 
-```console
+```bash
 git clone https://github.com/aurelien-rainone/tmux-gitbar.git ~/.tmux-gitbar
 ```
 
 **Add this line to your `tmux.conf`**
 
-```console
+```bash
 source-file "$HOME/.tmux-gitbar/tmux-gitbar.tmux"
 ```
 
@@ -76,13 +76,13 @@ Let's say you prefer to install **tmux-gitbat** in
 
 **Get the code**
 
-```console
+```bash
 git clone https://github.com/aurelien-rainone/tmux-gitbar.git /path/to/tmux-gitbar
 ```
 
 **Add those 2 lines to your `tmux.conf`**
 
-```console
+```bash
 TMUX_GITBAR_DIR="/path/to/tmux-gitbar"
 source-file "/path/to/tmux-gitbar/tmux-gitbar.tmux"
 ```
@@ -138,7 +138,7 @@ keywords is made of all the standard tmux keywords, plus 4 new git-specific
 ones:
 
 Default status string is:
-```console
+```bash
 TMGB_STATUS_STRING="#{git_branch} - #{git_upstream} - #{git_remote} #{git_flags}"
 ```
 
@@ -186,7 +186,7 @@ is shown.
 ## Status bar location
 
 Accepts `left` of `right`. Default:
-```console
+```bash
 TMGB_STATUS_LOCATION=right
 ```
 
