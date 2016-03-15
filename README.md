@@ -87,7 +87,7 @@ TMUX_GITBAR_DIR="/path/to/tmux-gitbar"
 source-file "/path/to/tmux-gitbar/tmux-gitbar.tmux"
 ```
 
-**Important:** `TMUX_GITBAR_DIR` environment variable must be set before sourcing
+**Important:** `TMUX_GITBAR_DIR` environment variable **must be set** before sourcing
 `tmux-gitbar.tmux`.  
 **Note:** Do not include the trailing slash.
 
@@ -202,8 +202,14 @@ tmux-gitbar background color. Default is black.
 
 ## Symbols
 
-Default symbols are declared at the top of `tmux-gitbar.sh` and they can be
-redefined in `tmux-gitbar.conf`.
+You can replace the default symbols with others. Symbols defined in `tmux-gitbar.conf` 
+take precedence over the default ones.  
+For example, if you want to use the `x` to represent conflicts, instead of the default 
+'✖' (unicode 0x2716), simply add to your `tmux-gitbar.conf`:
+
+```bash
+CONFLICT_SYMBOL="x"
+```
 
 
 # Credits
