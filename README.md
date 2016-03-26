@@ -230,6 +230,9 @@ Other credits for :
 
 # Changelog
 
+### v1.2.0, 2016-03-26
+- Add integration test suite
+
 ### v1.1.1, 2016-03-10
 - Replace deprecated status-xxx-fg/bg/attr syntax with the new style syntax
 - Fix issue 23 'bad colour' error
