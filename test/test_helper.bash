@@ -6,12 +6,14 @@
 # github.com/aurelien-rainone/tmux-gitbar
 
 export MOCKREPO="${BATS_TMPDIR}/mock-repo"
-export ROOTDIR="${BATS_TEST_DIRNAME}/.."
+export ROOTDIR="${BATS_TEST_DIRNAME}/../.."
 
 create_test_repo() {
 
   working_tree="$MOCKREPO"
   repo="${working_tree}.git"
+
+  backup_pwd
 
   # create the repository
   git init -q --bare "$repo"
@@ -30,6 +32,8 @@ create_test_repo() {
   git add file1 file2 file3
   git commit -m 'commit 3 files'
   git push --set-upstream origin master
+
+  restore_pwd
 }
 
 cleanup_test_repo() {
@@ -39,4 +43,12 @@ cleanup_test_repo() {
 
   [ -d "$working_tree" ] && rm -rf "$working_tree"/
   [ -d "$repo" ] && rm -rf "$repo"/
+}
+
+backup_pwd() {
+  pushd . > /dev/null
+}
+
+restore_pwd() {
+  popd > /dev/null
 }

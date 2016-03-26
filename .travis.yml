@@ -1,7 +1,18 @@
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install -qq expect
+
+install:
+  - # install supported version Tmux 1.9a
+  - sudo add-apt-repository -y ppa:pi-rho/dev
+  - sudo apt-get update
+  - sudo apt-get install -y tmux=1.9a-1~ppa1~p
+
 before_script:
   - git clone https://github.com/sstephenson/bats.git /tmp/bats
   - mkdir -p /tmp/local
   - bash /tmp/bats/install.sh /tmp/local
   - export PATH=$PATH:/tmp/local/bin
 script:
-  - bats test/*.bats
+  - bats test/unit-tests/*.bats
+  - bash test/integration-tests/run_integration_tests.sh
