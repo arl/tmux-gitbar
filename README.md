@@ -23,12 +23,15 @@ Show **Local** and **Remote** branches information:
  - stash
 
 <br>
-**WARNING: Breaking change**  
-In case you were already using tmux-gitbar, with a version prior to v1.0.0:
- - You don't need any more to modify `.bashrc` (or wherever you sourced
-   tmux-gitbar.sh)
- - However, you have a line to add to your `.tmux.conf` file, detail in the
-   [Installing](#installing) section
+**WARNING: Breaking change**
+In case you were already using tmux-gitbar, `tmux-gitbar.conf` file is now auto generated
+during tmux session creation, if it doesn't exist already. So two possible 
+outcomes, in case you are upgrading from a version prior to v1.3.0:
+ - You never touched `tmux-gitbar.conf` -> **You have nothing to do**
+ - You customized the default `tmux-gitbar.conf` -> In this case you need to **backup your
+   `tmux-gitbar.conf`** before checking out the latest version of tmux-gitbar, because it
+   is not version controled anymore. Once updated, put back your backed up `tmux-gitbar.conf`
+   where it was before, and you're done.
 <br><br>
 
 
@@ -131,6 +134,10 @@ FYI, the font used in the screenshots is [consolas-font-for-powerline][5].
 
 # Documentation
 
+Customizing the location and appearance of tmux-gitbar is realized in 
+`tmux-gitbar.conf`, this file is auto-generated at first launch if it doesn't
+exist already.
+
 ## Status string
 
 The status string is defined by assembling keywords. The set of possible
@@ -229,6 +236,11 @@ Other credits for :
 
 
 # Changelog
+
+### v1.3.0, 2016-04-02
+- `tmux-gitbar.conf` is not version controlled any more, and generated at first 
+launch, this permitting to update tmux-gitbar without overwriting user-customized
+configuration.
 
 ### v1.2.0, 2016-03-26
 - Add integration test suite
