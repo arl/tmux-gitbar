@@ -239,7 +239,7 @@ Other credits for :
 
 ### v1.3.0, 2016-04-02
 - `tmux-gitbar.conf` is not version controlled any more, and generated at first 
-launch, this permitting to update tmux-gitbar without overwriting user-customized
+launch, allowing to update tmux-gitbar without overwriting user-customized
 configuration.
 
 ### v1.2.0, 2016-03-26
