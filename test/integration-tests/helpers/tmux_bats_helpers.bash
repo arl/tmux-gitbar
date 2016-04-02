@@ -29,16 +29,9 @@ set_tmgb_location_left() {
   ed -s $TMGBCONF <<< $',s/\(TMGB_STATUS_LOCATION\)=.*/\\1=\'left\'\nw' > /dev/null
 }
 
-# Clear gitbar status string, in tmux-gitbar configuration file
-clear_tmgb_string() {
+# Generate default tmux-gitbar.conf
+gen_default_tmgb_conf() {
 
   TMGBCONF="$PWD/tmux-gitbar.conf"
-  # In-place modification of tmux-gitbar.conf
-  ed -s $TMGBCONF <<< $',s/\(TMGB_STATUS_STRING\)=.*/\\1=\'\'\nw' > /dev/null
-}
-
-# Restore the default tmux-gitbar.conf
-restore_tmgb_conf() {
-  echo '' > /dev/null
-  git checkout tmux-gitbar.conf
+  ./lib/generate-config.sh "${TMGBCONF}"
 }

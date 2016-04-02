@@ -5,6 +5,14 @@
 # Created by Aurélien Rainone
 # github.com/aurelien-rainone/tmux-gitbar
 
+print_config() {
+
+  cat <<EOF
+# tmux-gitbar: Git in tmux status bar
+#
+# Created by Aurélien Rainone
+# github.com/aurelien-rainone/tmux-gitbar
+
 #
 # This is the tmux-gitbar configuration file
 #
@@ -26,3 +34,16 @@ readonly TMGB_STYLE='bg=black,fg=white,bright'
 #
 # See README.md for additional information
 readonly TMGB_STATUS_STRING=" #{git_branch} - #{git_upstream} - #{git_remote} #{git_flags}"
+EOF
+}
+
+main() {
+  tmgbconf="${1}"
+  if print_config > "${tmgbconf}" ; then
+    echo "Generated tmux-gitbar configuration..."
+  else
+    echo "Couldn't generate tmux-gitbar configuration"
+  fi
+}
+
+main "$@"
