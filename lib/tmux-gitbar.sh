@@ -43,6 +43,7 @@ RESET_FMT="#[fg=default]"
 
 TMGB_OUTREPO_STATUS=""
 TMGB_OUTREPO_STYLE=""
+TMGB_OUTREPO_LENGTH=""
 
 # Load the config file
 load_config() {
@@ -59,6 +60,10 @@ save_statusbar() {
   # Previous status string style. Thanks to https://github.com/aizimmer
   TMGB_OUTREPO_STYLE=$(tmux show -vg "status-$TMGB_STATUS_LOCATION-style")
   readonly TMGB_OUTREPO_STYLE
+
+  # Previous status string length.
+  TMGB_OUTREPO_LENGTH=$(tmux show -vg "status-$TMGB_STATUS_LOCATION-length")
+  readonly TMGB_OUTREPO_LENGTH
 }
 
 # Find the top-level directory of the current Git working tree
@@ -157,6 +162,10 @@ reset_statusbar() {
     tmux set-window-option "status-$TMGB_STATUS_LOCATION-style" "$TMGB_OUTREPO_STYLE" > /dev/null
   fi
 
+  if [ -n "$TMGB_OUTREPO_LENGTH" ]; then
+    tmux set-window-option "status-$TMGB_STATUS_LOCATION-length" "$TMGB_OUTREPO_LENGTH" > /dev/null
+  fi
+
   # Set the out-repo status
   tmux set-window-option "status-$TMGB_STATUS_LOCATION" "$TMGB_OUTREPO_STATUS" > /dev/null
 }
@@ -174,6 +183,9 @@ update_gitbar() {
     local status_string
     status_string=$(do_interpolation "${TMGB_STATUS_STRING}")
     tmux set-window-option "status-$TMGB_STATUS_LOCATION" "$status_string" > /dev/null
+
+    # increase length
+    tmux set-window-option    "status-$TMGB_STATUS_LOCATION-length" 180 > /dev/null
 
   else
     find_git_repo
