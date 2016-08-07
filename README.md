@@ -242,6 +242,10 @@ Other credits for :
 
 # Changelog
 
+### v1.3.1, 2016-08-07
+- Replace default BRANCH_SYMBOL with u8997 symbol
+- Fix issue 10: some symbols do not render with the stock font
+
 ### v1.3.0, 2016-04-02
 - `tmux-gitbar.conf` is not version controlled any more, and generated at first 
 launch, allowing to update tmux-gitbar without overwriting user-customized
