@@ -242,7 +242,7 @@ Other credits for :
 
 # Changelog
 
-### v1.3.1, 2016-08-07
+### v1.3.2, 2016-08-07
 - Replace default BRANCH_SYMBOL with u8997 symbol
 - Fix issue 10: some symbols do not render with the stock font
 
