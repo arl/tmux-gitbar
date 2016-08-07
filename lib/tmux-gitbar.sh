@@ -177,12 +177,15 @@ update_gitbar() {
 
     read_git_info
 
-    tmux set-window-option "status-$TMGB_STATUS_LOCATION-style" "$TMGB_STYLE" > /dev/null
-    tmux set-window-option "status-$TMGB_STATUS_LOCATION-length" 180 > /dev/null
+    # out of repo status
+    tmux set-window-option    "status-$TMGB_STATUS_LOCATION-style" "$TMGB_OUTREPO_STYLE" > /dev/null
+    tmux set-window-option    "status-$TMGB_STATUS_LOCATION" "$TMGB_OUTREPO_STATUS" > /dev/null
 
+    # tmux-gitbar status
     local status_string
     status_string=$(do_interpolation "${TMGB_STATUS_STRING}")
-    tmux set-window-option "status-$TMGB_STATUS_LOCATION" "$status_string" > /dev/null
+    status_string="#[$TMGB_STYLE]$status_string"
+    tmux set-window-option -a "status-$TMGB_STATUS_LOCATION" "$status_string" > /dev/null
 
     # increase length
     tmux set-window-option    "status-$TMGB_STATUS_LOCATION-length" 180 > /dev/null
