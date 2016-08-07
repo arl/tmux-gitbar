@@ -17,7 +17,7 @@ readonly FLAGS_KWD="\#{git_flags}"
 # Symbols shown in status string.
 # Can be redefined here, or preferably in tmux-gitbar.conf
 NO_REMOTE_TRACKING_SYMBOL="L"
-BRANCH_SYMBOL="⭠"
+BRANCH_SYMBOL="⎇ "
 STAGED_SYMBOL="●"
 CONFLICT_SYMBOL="✖"
 CHANGED_SYMBOL="✚"
