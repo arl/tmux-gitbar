@@ -24,14 +24,14 @@ Show **Local** and **Remote** branches information:
 
 <br>
 **WARNING: Breaking change**
-In case you were already using tmux-gitbar, `tmux-gitbar.conf` file is now auto generated
-during tmux session creation, if it doesn't exist already. So two possible 
-outcomes, in case you are upgrading from a version prior to v1.3.0:
+In case you were already using tmux-gitbar, `tmux-gitbar.conf` file is now auto
+generated during tmux session creation, if it doesn't exist already. So two
+possible outcomes, in case you are upgrading from a version prior to v1.3.0:
  - You never touched `tmux-gitbar.conf` -> **You have nothing to do**
- - You customized the default `tmux-gitbar.conf` -> In this case you need to **backup your
-   `tmux-gitbar.conf`** before checking out the latest version of tmux-gitbar, because it
-   is not version controled anymore. Once updated, put back your backed up `tmux-gitbar.conf`
-   where it was before, and you're done.
+ - You customized the default `tmux-gitbar.conf` -> In this case you need to
+ **backup your `tmux-gitbar.conf`** before checking out the latest version of
+ tmux-gitbar, because it is not version controled anymore. Once updated, put
+ back your backed up `tmux-gitbar.conf` where it was before, and you're done.
 <br><br>
 
 
@@ -90,8 +90,8 @@ TMUX_GITBAR_DIR="/path/to/tmux-gitbar"
 source-file "/path/to/tmux-gitbar/tmux-gitbar.tmux"
 ```
 
-**Important:** `TMUX_GITBAR_DIR` environment variable **must be set** before sourcing
-`tmux-gitbar.tmux`.  
+**Important:** `TMUX_GITBAR_DIR` environment variable **must be set** before
+sourcing `tmux-gitbar.tmux`.  
 **Note:** Do not include the trailing slash.
 
 ## Font
@@ -209,10 +209,10 @@ tmux-gitbar background color. Default is black.
 
 ## Symbols
 
-You can replace the default symbols with others. Symbols defined in `tmux-gitbar.conf` 
-take precedence over the default ones.  
-For example, if you want to use the `x` to represent conflicts, instead of the default 
-'✖' (unicode 0x2716), simply add to your `tmux-gitbar.conf`:
+You can replace the default symbols with others. Symbols defined in
+`tmux-gitbar.conf` take precedence over the default ones.  
+For example, if you want to use the `x` to represent conflicts, instead of the
+default '✖' (unicode 0x2716), simply add to your `tmux-gitbar.conf`:
 
 ```bash
 CONFLICT_SYMBOL="x"
@@ -221,7 +221,8 @@ CONFLICT_SYMBOL="x"
 
 # Credits
 
-The inspiration for and a part of the code base of **tmux-gitbar** are coming from those 2 great projects:
+The inspiration for and a part of the code base of **tmux-gitbar** are coming
+from those 2 great projects:
  - [bash-git-prompt][3] an informative and fancy bash prompt for Git users.
  - [tmux-git][4] a script for showing current Git branch in Tmux status bar
 
