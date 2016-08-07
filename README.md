@@ -96,11 +96,15 @@ sourcing `tmux-gitbar.tmux`.
 
 ## Font
 
-If one symbol or more don't appear as they should or just if you'd
-like to change them, have a look at the [Symbols section](#symbols) of this
-README
+The default tmux-gitbar configuration does not require you to install any
+additional font. If your default NIX installation does not allow you to
+visualize correctly the set of symbols, feel free to open an issue.
 
-FYI, the font used in the screenshots is [consolas-font-for-powerline][5].
+If you wish to change the appearance of tmux-gitbar by replacing one or more
+symbols, have a look at the [Symbols section](#symbols) of this README.
+
+FYI, the font used in the screenshots is [consolas-font-for-powerline][5], and
+the default `BRANCH_SYMBOL has been replaced.
 
 
 # Examples
