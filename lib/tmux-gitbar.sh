@@ -153,12 +153,12 @@ do_interpolation() {
 
 # Reset tmux status bar to what it was before tmux-gitbar touched it
 reset_statusbar() {
-  if [ -n "$TMGB_OUTREPO_STYLE" ]; then
-    tmux set-window-option "status-$TMGB_STATUS_LOCATION-style" "$TMGB_OUTREPO_STYLE" > /dev/null
-  fi
 
-  # Set the out-repo status
-  tmux set-window-option "status-$TMGB_STATUS_LOCATION" "$TMGB_OUTREPO_STATUS" > /dev/null
+  local status_string
+  status_string="#[$TMGB_OUTREPO_STYLE]$TMGB_OUTREPO_STATUS"
+
+  # Reset the status string to how it was
+  tmux set-window-option "status-$TMGB_STATUS_LOCATION" "$status_string" > /dev/null
 }
 
 # Update tmux git status bar, called within PROMPT_COMMAND
@@ -168,15 +168,10 @@ update_gitbar() {
 
     read_git_info
 
-    # out of repo status
-    tmux set-window-option "status-$TMGB_STATUS_LOCATION-style" "$TMGB_OUTREPO_STYLE" > /dev/null
-    tmux set-window-option "status-$TMGB_STATUS_LOCATION" "$TMGB_OUTREPO_STATUS" > /dev/null
-
-    # tmux-gitbar status
+    # append Git status to current status string
     local status_string
-    status_string=$(do_interpolation "${TMGB_STATUS_STRING}")
-    status_string="#[$TMGB_STYLE]$status_string"
-    tmux set-window-option -a "status-$TMGB_STATUS_LOCATION" "$status_string" > /dev/null
+    status_string="#[$TMGB_OUTREPO_STYLE]$TMGB_OUTREPO_STATUS#[$TMGB_STYLE]$(do_interpolation "${TMGB_STATUS_STRING}")"
+    tmux set-window-option "status-$TMGB_STATUS_LOCATION" "$status_string" > /dev/null
 
   else
     find_git_repo
