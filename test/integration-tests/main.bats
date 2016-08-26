@@ -14,7 +14,7 @@ setup() {
 }
 
 # Covers both modes of tmux-gitbar, in and out of a Git working tree,
-# and how we switch form one to another
+# and how we switch from one to another
 @test "behaviour in and out of git working tree" {
   set_option_in_tmux_conf 'status-right' '[out of working tree]'
   expect "${BATS_TEST_DIRNAME}/in_and_out_of_working_tree.tcl"
