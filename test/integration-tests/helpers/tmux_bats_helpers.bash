@@ -26,7 +26,7 @@ set_tmgb_location_left() {
 
   TMGBCONF="$PWD/tmux-gitbar.conf"
   # In-place modification of tmux-gitbar.conf
-  ed -s $TMGBCONF <<< $',s/\(TMGB_STATUS_LOCATION\)=.*/\\1=\'left\'\nw' > /dev/null
+  ed -s "$TMGBCONF" <<< $',s/\(TMGB_STATUS_LOCATION\)=.*/\\1=\'left\'\nw' > /dev/null
 }
 
 # Generate default tmux-gitbar.conf
