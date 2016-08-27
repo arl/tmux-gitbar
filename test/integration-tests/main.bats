@@ -14,9 +14,9 @@ setup() {
 }
 
 # Covers both modes of tmux-gitbar, in and out of a Git working tree,
-# and how we switch form one to another
+# and how we switch from one to another
 @test "behaviour in and out of git working tree" {
-  set_option_in_tmux_conf 'status-right' '[out of working tree]'
+  set_option_in_tmux_conf 'status-right' '#[fg=default,bg=default]status'
   expect "${BATS_TEST_DIRNAME}/in_and_out_of_working_tree.tcl"
 }
 
@@ -27,8 +27,9 @@ setup() {
   gen_default_tmgb_conf
   set_tmgb_location_left
 
-  set_option_in_tmux_conf 'status-left' '[out of working tree]'
-  set_option_in_tmux_conf 'status-right' '[right]'
+  set_option_in_tmux_conf 'status-left-length' 60
+  set_option_in_tmux_conf 'status-left' 'left'
+  set_option_in_tmux_conf 'status-right' 'right'
   expect -d "${BATS_TEST_DIRNAME}/tmux-gitbar_location.tcl" -- left
 }
 
@@ -38,8 +39,8 @@ setup() {
   # Default tmux-gitbar location is on the right
   gen_default_tmgb_conf
 
-  set_option_in_tmux_conf 'status-right' '[out of working tree]'
-  set_option_in_tmux_conf 'status-left' '[left]'
+  set_option_in_tmux_conf 'status-right' 'right'
+  set_option_in_tmux_conf 'status-left' 'left'
   expect "${BATS_TEST_DIRNAME}/tmux-gitbar_location.tcl" -- right
 }
 

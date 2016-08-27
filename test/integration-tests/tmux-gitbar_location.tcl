@@ -18,30 +18,25 @@ sleep 1
 if {$tmgb_loc == {right}} {
 
   assert_on_screen_regex \
-    {left.*origin/master} \
-    "branch name should show on the right"
+    {left.*right.*origin/master} \
+    "should show left, right and git statuses, in that order"
 
 } elseif {$tmgb_loc == {left}} {
 
   assert_on_screen_regex \
-    {origin/master.*right} \
-    "branch name should show on the left"
+    {left.*origin/master.*right} \
+    "should show left, git and right statuses, in that order"
 }
 
 # Test gitbar location outside of git working tree
 send_cd /
-if {$tmgb_loc == {right}} {
 
-  assert_on_screen_regex \
-    {left.*out of working tree} \
-    "out of repo status string should show on the right"
-
-} elseif {$tmgb_loc == {left}} {
-
-  assert_on_screen_regex \
-    {out of working tree.*right} \
-    "out of repo status string should show on the left"
-}
+assert_on_screen_regex \
+  {left.*right} \
+  "should show left and right status strings"
+assert_not_on_screen \
+  "origin/master" \
+  "should not show git status"
 
 # End of test: success!
 teardown_and_exit

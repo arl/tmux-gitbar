@@ -13,16 +13,18 @@ spawn tmux -f $env(TMUXCONF)
 # Wait for tmux to launch and attach
 sleep 1
 
-# As tmux started in-tree, expect to see the branch name
-assert_on_screen "origin/master" "should show git branch name"
+# tmux is started inside a git-tree directory, so we expect the status bar to
+# be composed of the 'normal' tmux status, followed by the branch name
+assert_on_screen_regex "status.*origin/master" "should show previous status + git status"
 
-# Goes out of tree
+# Goes out of tree, 'normal' status should show without the branch name
 send_cd /
-assert_on_screen "out of working tree" "should show out-of-tree status string"
+assert_on_screen "status" "should show normal status string"
+assert_not_on_screen "origin/master" "should not show git status"
 
 # Turn back into the git working tree
 send_cd $mockrepo
-assert_on_screen "origin/master" "should show git branch name"
+assert_on_screen_regex "status.*origin/master" "should show normal status + git branch"
 
 # End of test: success!
 teardown_and_exit
