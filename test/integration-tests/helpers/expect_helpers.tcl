@@ -41,6 +41,18 @@ proc assert_on_screen {text message} {
   }
 }
 
+proc assert_not_on_screen {text message} {
+  expect {
+    "$text" {
+      puts "  Fail: $message"
+      exit_status_false
+    }
+    timeout {
+      puts "  Success: $message"
+    }
+  }
+}
+
 proc assert_on_screen_regex {text message} {
   expect {
     -re "$text" {
