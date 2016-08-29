@@ -13,15 +13,16 @@ tmux status bar.
 
 # Features
 
-Show **Local** and **Remote** branches information:
+Show **Local** and **Remote** Git branches information:
  - names of **local** and **remote** branches
  - divergence with upstream in number of commits
 
-**Working tree status:**
+**Git Working tree status:**
  - immediately see if your working tree is *clean*
  - number of changed, stashed, untracked files
  - conflicts
  - stash
+ - tmux-gitbar disappears when current directory is not a Git working tree
 
 **Compatible** with other tmux **plugins**:
  - your tmux status bar remains unchanged when current directory is not part of
@@ -31,7 +32,7 @@ Show **Local** and **Remote** branches information:
    issue, or even better, a pull-request, in case you discover any kind of
    incompatibility with a tmux plugin you are using.
 
-**Customizable**
+**Customizable**  
 You can customize the content and the style of the Git status bar, this is all
 done in `tmux-gitbar.conf`, this file is auto-generated at first launch, in the
 installation directory.
