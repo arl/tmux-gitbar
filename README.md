@@ -23,16 +23,20 @@ Show **Local** and **Remote** branches information:
  - conflicts
  - stash
 
+**Compatible** with other tmux **plugins**:
+ - your tmux status bar remains unchanged when current directory is not part of
+   a Git tree.
+ - inside a Git tree, **tmux-gitbar** concatenates Git status to the tmux
+   status bar. This is a new feature (since v2.0.0), so feel free to fill an
+   issue, or even better, a pull-request, in case you discover any kind of
+   incompatibility with a tmux plugin you are using.
+
+**Customizable**
+You can customize the content and the style of the Git status bar, this is all
+done in `tmux-gitbar.conf`, this file is auto-generated at first launch, in the
+installation directory.
+
 <br>
-**WARNING: Breaking change**
-In case you were already using tmux-gitbar, `tmux-gitbar.conf` file is now auto
-generated during tmux session creation, if it doesn't exist already. So two
-possible outcomes, in case you are upgrading from a version prior to v1.3.0:
- - You never touched `tmux-gitbar.conf` -> **You have nothing to do**
- - You customized the default `tmux-gitbar.conf` -> In this case you need to
- **backup your `tmux-gitbar.conf`** before checking out the latest version of
- tmux-gitbar, because it is not version controled anymore. Once updated, put
- back your backed up `tmux-gitbar.conf` where it was before, and you're done.
 <br><br>
 
 
