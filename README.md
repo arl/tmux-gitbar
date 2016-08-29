@@ -251,6 +251,10 @@ Other credits for :
 
 # Changelog
 
+### v2.0.0, 2016-08-29
+- Concatenate Git status to previous status
+- Fix issue 28: do not overwrite previous status
+
 ### v1.3.2, 2016-08-07
 - Replace default BRANCH_SYMBOL with u8997 symbol
 - Fix issue 10: some symbols do not render with the stock font
