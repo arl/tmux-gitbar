@@ -10,6 +10,7 @@ demo](http://aurelien-rainone.github.io/tmux-gitbar/tmux-gitbar-demo.gif)
 [**tmux-gitbar**][2] shows the status of your git working tree, right in
 tmux status bar.
 
+
 # Features
 
 Show **Local** and **Remote** branches information:
@@ -58,6 +59,7 @@ possible outcomes, in case you are upgrading from a version prior to v1.3.0:
 You can install tmux-gitbar anywhere you want, although it's slightly easier to
 install it to the default location `$HOME/.tmux-gitbar`
 
+
 ## Installing to the default location
 
 **Get the code**
@@ -93,6 +95,7 @@ source-file "/path/to/tmux-gitbar/tmux-gitbar.tmux"
 **Important:** `TMUX_GITBAR_DIR` environment variable **must be set** before
 sourcing `tmux-gitbar.tmux`.  
 **Note:** Do not include the trailing slash.
+
 
 ## Font
 
@@ -142,6 +145,7 @@ Customizing the location and appearance of tmux-gitbar is realized in
 `tmux-gitbar.conf`, this file is auto-generated at first launch if it doesn't
 exist already.
 
+
 ## Status string
 
 The status string is defined by assembling keywords. The set of possible
@@ -159,6 +163,7 @@ TMGB_STATUS_STRING="#{git_branch} - #{git_upstream} - #{git_remote} #{git_flags}
 |`#{git_upstream}`|`origin/master`|remote tracking branch|
 |`#{git_remote}`|`↓n`|local status regarding remote|
 |`#{git_flags}`|`●n ✚n` or `✔`| git status fields|
+
 
 ## tmux-gitbar keywords
 
@@ -194,6 +199,7 @@ Flags with number being 0 are not shown.
 The working tree is considered *clean* if all flags are 0, in this case a `✔`
 is shown.
 
+
 ## Status bar location
 
 Accepts `left` of `right`. Default:
@@ -221,7 +227,6 @@ default '✖' (unicode 0x2716), simply add to your `tmux-gitbar.conf`:
 ```bash
 CONFLICT_SYMBOL="x"
 ```
-
 
 # Credits
 
