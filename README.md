@@ -33,17 +33,18 @@ Show **Local** and **Remote** Git branches information:
    incompatibility with a tmux plugin you are using.
 
 **Customizable**  
- - You can customize the content and the style of the Git status bar, this is all
-   done in `tmux-gitbar.conf`, this file is auto-generated at first launch, in 
-   the installation directory.
+You can customize the content and the style of the Git status bar, this is all
+done in `tmux-gitbar.conf`, this file is auto-generated at first launch, in the
+installation directory.
 
+<br>
 <br><br>
 
 
 # Table of Contents
 
-* [Installing](#installing)
-  * [Installing to the default location](#installing-to-the-default-location)
+* [How-to install](#how-to-install)
+  * [Default installation](#default-installation)
   * [Installing to another location](#installing-to-another-location)
   * [Font](#font)
 * [Examples](#examples)
@@ -58,13 +59,15 @@ Show **Local** and **Remote** Git branches information:
 * [Changelog](#changelog)
 
 
-# Installing
+# How-to install?
 
 You can install tmux-gitbar anywhere you want, although it's slightly easier to
 install it to the default location `$HOME/.tmux-gitbar`
 
 
-## Installing to the default location
+## Default installation
+
+Default installation directory is `$HOME/.tmux-gitbar`
 
 **Get the code**
 
@@ -80,7 +83,7 @@ source-file "$HOME/.tmux-gitbar/tmux-gitbar.tmux"
 
 ## Installing to another location
 
-Let's say you prefer to install **tmux-gitbat** in
+Let's say you prefer to install **tmux-gitbar** in
 `/path/to/tmux-gitbar`.
 
 **Get the code**
