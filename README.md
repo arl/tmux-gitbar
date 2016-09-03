@@ -54,6 +54,7 @@ installation directory.
   * [Status bar location](#status-bar-location)
   * [Status bar color](#status-bar-color)
   * [Symbols](#symbols)
+* [Troubleshooting](#troubleshooting) 
 * [Credits](#credits)
 * [License](#license)
 * [Changelog](#changelog)
@@ -234,6 +235,24 @@ default '✖' (unicode 0x2716), simply add to your `tmux-gitbar.conf`:
 ```bash
 CONFLICT_SYMBOL="x"
 ```
+
+
+# Troubleshooting
+
+- **tmux-gitbar doesn't show up entirely, or doesn't show up at all**; it may
+simply be hidden because there isn't enough remaining space on the status bar.
+Try to increase the length of tmux status bar (left or or right) and/or
+remove some information from the tmux status bar. By default tmux-gitbar shows
+on the right, just replace by `left` if that is your case:
+
+```bash
+# increase space on right status bar
+set -g status-right-length 100
+
+# remove everything on the right (just tmux-gitbar will show up)
+set -g status-right ""
+```
+
 
 # Credits
 
