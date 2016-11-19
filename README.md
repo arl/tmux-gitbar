@@ -46,6 +46,7 @@ installation directory.
 * [How-to install](#how-to-install)
   * [Default installation](#default-installation)
   * [Installing to another location](#installing-to-another-location)
+  * [Configuration file](#configuration-file)
   * [Font](#font)
 * [Examples](#examples)
 * [Documentation](#documentation)
