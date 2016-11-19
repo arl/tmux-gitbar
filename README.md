@@ -275,6 +275,9 @@ from those 2 great projects:
  - [bash-git-prompt][3] an informative and fancy bash prompt for Git users.
  - [tmux-git][4] a script for showing current Git branch in Tmux status bar
 
+Contributers:
+ - [AlexKornitzer][7]
+
 Other credits for :
  - [tmux/tmux][1]
  - [gh-md-toc][6]
@@ -339,3 +342,4 @@ configuration.
 [4]: https://github.com/drmad/tmux-git
 [5]: https://github.com/runsisi/consolas-font-for-powerline
 [6]: https://github.com/ekalinin/github-markdown-toc
+[7]: https://github.com/AlexKornitzer
