@@ -105,9 +105,12 @@ sourcing `tmux-gitbar.tmux`.
 **Note:** Do not include the trailing slash.
 
 
-## Modifying tmux-gitbar.conf location
+## Configuration file
 
-If you prefer to store the **.tmux-gitbar.conf** somewhere other than `~/`.
+**tmux-gitbar** auto-generates its own configuration file at first launch
+and places it in `$HOME/.tmux-gitbar.conf`. If for whatever reasons you
+would like to store it somewhere else, or rename it, just define
+`$TMUX_GITBAR_CONF`.
 
 **Add this line to your `tmux.conf`**
 
