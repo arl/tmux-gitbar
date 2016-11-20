@@ -308,6 +308,10 @@ Other credits for :
 
 # Changelog
 
+### v2.1.0, 2016-11-20
+- configuration file location is defined by `$TMUX_GITBAR_CONF`
+- Fix issue 37: tmux-gitbar.conf can be stored outside of repo.
+
 ### v2.0.0, 2016-08-29
 - Concatenate Git status to previous status
 - Fix issue 28: do not overwrite previous status
