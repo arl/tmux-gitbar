@@ -46,6 +46,7 @@ installation directory.
 * [How-to install](#how-to-install)
   * [Default installation](#default-installation)
   * [Installing to another location](#installing-to-another-location)
+  * [Configuration file](#configuration-file)
   * [Font](#font)
 * [Examples](#examples)
 * [Documentation](#documentation)
@@ -105,9 +106,12 @@ sourcing `tmux-gitbar.tmux`.
 **Note:** Do not include the trailing slash.
 
 
-## Modifying tmux-gitbar.conf location
+## Configuration file
 
-If you prefer to store the **.tmux-gitbar.conf** somewhere other than `~/`.
+**tmux-gitbar** auto-generates its own configuration file at first launch
+and places it in `$HOME/.tmux-gitbar.conf`. If for whatever reasons you
+would like to store it somewhere else, or rename it, just define
+`$TMUX_GITBAR_CONF`.
 
 **Add this line to your `tmux.conf`**
 
@@ -271,6 +275,9 @@ from those 2 great projects:
  - [bash-git-prompt][3] an informative and fancy bash prompt for Git users.
  - [tmux-git][4] a script for showing current Git branch in Tmux status bar
 
+Contributers:
+ - [AlexKornitzer][7]
+
 Other credits for :
  - [tmux/tmux][1]
  - [gh-md-toc][6]
@@ -335,3 +342,4 @@ configuration.
 [4]: https://github.com/drmad/tmux-git
 [5]: https://github.com/runsisi/consolas-font-for-powerline
 [6]: https://github.com/ekalinin/github-markdown-toc
+[7]: https://github.com/AlexKornitzer
