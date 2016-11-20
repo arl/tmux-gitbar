@@ -44,9 +44,13 @@ RESET_FMT="#[fg=default]"
 TMGB_OUTREPO_STATUS=""
 TMGB_OUTREPO_STYLE=""
 
+if [ -z ${TMUX_GITBAR_CONF} ]; then
+  TMUX_GITBAR_CONF=${HOME}/.tmux-gitbar.conf
+fi
+
 # Load the config file
 load_config() {
-  source "${SCRIPT_DIR}/../tmux-gitbar.conf"
+  source "${TMUX_GITBAR_CONF}"
 }
 
 # Save status bar settings so that we can reset it later

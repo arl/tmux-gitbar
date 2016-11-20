@@ -32,7 +32,7 @@ Show **Local** and **Remote** Git branches information:
    issue, or even better, a pull-request, in case you discover any kind of
    incompatibility with a tmux plugin you are using.
 
-**Customizable**  
+**Customizable**
 You can customize the content and the style of the Git status bar, this is all
 done in `tmux-gitbar.conf`, this file is auto-generated at first launch, in the
 installation directory.
@@ -46,6 +46,7 @@ installation directory.
 * [How-to install](#how-to-install)
   * [Default installation](#default-installation)
   * [Installing to another location](#installing-to-another-location)
+  * [Configuration file](#configuration-file)
   * [Font](#font)
 * [Examples](#examples)
 * [Documentation](#documentation)
@@ -54,7 +55,7 @@ installation directory.
   * [Status bar location](#status-bar-location)
   * [Status bar color](#status-bar-color)
   * [Symbols](#symbols)
-* [Troubleshooting](#troubleshooting) 
+* [Troubleshooting](#troubleshooting)
 * [Credits](#credits)
 * [License](#license)
 * [Changelog](#changelog)
@@ -93,7 +94,7 @@ Let's say you prefer to install **tmux-gitbar** in
 git clone https://github.com/aurelien-rainone/tmux-gitbar.git /path/to/tmux-gitbar
 ```
 
-**Add those 2 lines to your `tmux.conf`**
+**Add these 2 lines to your `tmux.conf`**
 
 ```bash
 TMUX_GITBAR_DIR="/path/to/tmux-gitbar"
@@ -101,9 +102,22 @@ source-file "/path/to/tmux-gitbar/tmux-gitbar.tmux"
 ```
 
 **Important:** `TMUX_GITBAR_DIR` environment variable **must be set** before
-sourcing `tmux-gitbar.tmux`.  
+sourcing `tmux-gitbar.tmux`.
 **Note:** Do not include the trailing slash.
 
+
+## Configuration file
+
+**tmux-gitbar** auto-generates its own configuration file at first launch
+and places it in `$HOME/.tmux-gitbar.conf`. If for whatever reasons you
+would like to store it somewhere else, or rename it, just define
+`$TMUX_GITBAR_CONF`.
+
+**Add this line to your `tmux.conf`**
+
+```bash
+TMUX_GITBAR_CONF="/path/to/.tmux-gitbar.conf"
+```
 
 ## Font
 
@@ -149,7 +163,7 @@ the default `BRANCH_SYMBOL has been replaced.
 
 # Documentation
 
-Customizing the location and appearance of tmux-gitbar is realized in 
+Customizing the location and appearance of tmux-gitbar is realized in
 `tmux-gitbar.conf`, this file is auto-generated at first launch if it doesn't
 exist already.
 
@@ -203,7 +217,7 @@ Shows the `⭠` symbol followed by the local branch name.
 |`…n`|there are n untracked files|
 |`⚑n`|there are n stash entries|
 
-Flags with number being 0 are not shown.  
+Flags with number being 0 are not shown.
 The working tree is considered *clean* if all flags are 0, in this case a `✔`
 is shown.
 
@@ -228,7 +242,7 @@ tmux-gitbar background color. Default is black.
 ## Symbols
 
 You can replace the default symbols with others. Symbols defined in
-`tmux-gitbar.conf` take precedence over the default ones.  
+`tmux-gitbar.conf` take precedence over the default ones.
 For example, if you want to use the `x` to represent conflicts, instead of the
 default '✖' (unicode 0x2716), simply add to your `tmux-gitbar.conf`:
 
@@ -261,6 +275,9 @@ from those 2 great projects:
  - [bash-git-prompt][3] an informative and fancy bash prompt for Git users.
  - [tmux-git][4] a script for showing current Git branch in Tmux status bar
 
+Contributers:
+ - [AlexKornitzer][7]
+
 Other credits for :
  - [tmux/tmux][1]
  - [gh-md-toc][6]
@@ -282,7 +299,7 @@ Other credits for :
 - Fix issue 10: some symbols do not render with the stock font
 
 ### v1.3.0, 2016-04-02
-- `tmux-gitbar.conf` is not version controlled any more, and generated at first 
+- `tmux-gitbar.conf` is not version controlled any more, and generated at first
 launch, allowing to update tmux-gitbar without overwriting user-customized
 configuration.
 
@@ -325,3 +342,4 @@ configuration.
 [4]: https://github.com/drmad/tmux-git
 [5]: https://github.com/runsisi/consolas-font-for-powerline
 [6]: https://github.com/ekalinin/github-markdown-toc
+[7]: https://github.com/AlexKornitzer
