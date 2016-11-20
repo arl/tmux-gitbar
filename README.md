@@ -267,6 +267,24 @@ set -g status-right-length 100
 set -g status-right ""
 ```
 
+- **nothing is happening when inside tmux and a Git directory**
+If running the following makes tmux-gitbar show up:
+
+```bash
+`/path/to/tmux-gitbar/update-gitbar`
+```
+
+That means something (in your `.bashrc`?) might be overwriting the
+`$PROMPT_COMMAND` environment variable. `$PROMPT_COMMAND` should be 
+concatenated one after another, as a `$PATH` variable.
+
+- **file an issue**
+Try to provide a maximum of context, at least:
+
+- the output of `tmux -V && echo $SHELL`
+- if possible, the content of your `.tmux.conf`
+
+thanks!
 
 # Credits
 
