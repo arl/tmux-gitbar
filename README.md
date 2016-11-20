@@ -253,11 +253,11 @@ CONFLICT_SYMBOL="x"
 
 # Troubleshooting
 
-- **tmux-gitbar doesn't show up entirely, or doesn't show up at all**; it may
-simply be hidden because there isn't enough remaining space on the status bar.
-Try to increase the length of tmux status bar (left or or right) and/or
-remove some information from the tmux status bar. By default tmux-gitbar shows
-on the right, just replace by `left` if that is your case:
+## tmux-gitbar doesn't show up entirely...
+
+It may simply be hidden because there isn't enough remaining space on the
+status bar. Try to increase the length of tmux status bar (left or or right)
+and/or remove some information from the tmux status bar (in `tmux.conf`):
 
 ```bash
 # increase space on right status bar
@@ -266,25 +266,27 @@ set -g status-right-length 100
 # remove everything on the right (just tmux-gitbar will show up)
 set -g status-right ""
 ```
+By default tmux-gitbar shows on the right, set `left` in `tmux-gitbar.conf` to
+see if that is your case (in `tmux-gitbar.conf`).
 
-- **nothing is happening when inside tmux and a Git directory**
-If running the following makes tmux-gitbar show up:
+## nothing is showing on tmux status bar...
 
+When inside a tmux window, run:
 ```bash
-`/path/to/tmux-gitbar/update-gitbar`
+/path/to/tmux-gitbar/update-gitbar
 ```
+If now tmux-gitbar shows up, that means something (in your `.bashrc`?) might be
+overwriting the `$PROMPT_COMMAND` environment variable installed by tmux-gitbar.
+`$PROMPT_COMMAND` should be a concatenation of commands, as `$PATH` is a
+concatenation of paths.
 
-That means something (in your `.bashrc`?) might be overwriting the
-`$PROMPT_COMMAND` environment variable. `$PROMPT_COMMAND` should be 
-concatenated one after another, as a `$PATH` variable.
+## [file an issue](https://github.com/aurelien-rainone/tmux-gitbar/issues/new)
 
-- **file an issue**
 Try to provide a maximum of context, at least:
+ - the output of `tmux -V && echo $SHELL`
+ - if possible, the content of your `.tmux.conf`
 
-- the output of `tmux -V && echo $SHELL`
-- if possible, the content of your `.tmux.conf`
-
-thanks!
+Thanks!
 
 # Credits
 
@@ -365,3 +367,4 @@ configuration.
 [5]: https://github.com/runsisi/consolas-font-for-powerline
 [6]: https://github.com/ekalinin/github-markdown-toc
 [7]: https://github.com/AlexKornitzer
+
