@@ -55,6 +55,7 @@ installation directory.
   * [Status bar location](#status-bar-location)
   * [Status bar color](#status-bar-color)
   * [Symbols](#symbols)
+  * [Ignoring repositories](#ignoring-repositories)
 * [Troubleshooting](#troubleshooting)
 * [Credits](#credits)
 * [License](#license)
@@ -250,6 +251,15 @@ default '✖' (unicode 0x2716), simply add to your `tmux-gitbar.conf`:
 CONFLICT_SYMBOL="x"
 ```
 
+## Ignoring Repositories
+
+You can ignore a repository by adding the file `.tmgbignore` to the root of the
+repository to be ignored. This will stop tmux-gitbar from showing for the
+targeted repository.
+
+```bash
+touch "/path/to/repo/.tmgbignore"
+```
 
 # Troubleshooting
 
