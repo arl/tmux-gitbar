@@ -172,6 +172,12 @@ update_gitbar() {
 
     read_git_info
 
+    # Check if we ignore the repo
+    if [[ -f "$git_repo/.tmgbignore" ]]; then
+      reset_statusbar
+      return
+    fi
+
     # append Git status to current status string
     local status_string
     status_string="#[$TMGB_OUTREPO_STYLE]$TMGB_OUTREPO_STATUS#[$TMGB_STYLE]$(do_interpolation "${TMGB_STATUS_STRING}")"
