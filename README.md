@@ -320,6 +320,9 @@ Other credits for :
 
 # Changelog
 
+### v2.1.1, 2016-11-23
+- add support for ignoring repositories through `.tmgbignore`
+
 ### v2.1.0, 2016-11-20
 - configuration file location is defined by `$TMUX_GITBAR_CONF`
 - Fix issue 37: tmux-gitbar.conf can be stored outside of repo.
