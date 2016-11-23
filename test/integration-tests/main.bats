@@ -44,7 +44,13 @@ setup() {
   expect "${BATS_TEST_DIRNAME}/tmux-gitbar_location.tcl" -- right
 }
 
-# Check that nothing is written on stdout/err during the execution of the 
+# Check that tmux-gitbar will detect .tmgbignore if present and hide
+@test "tmux-gitbar can ignore repo" {
+  set_option_in_tmux_conf 'status-right' '#[fg=default,bg=default]status'
+  expect -d "${BATS_TEST_DIRNAME}/tmux-gitbar_ignore.tcl"
+}
+
+# Check that nothing is written on stdout/err during the execution of the
 # PROMPT_COMMAND. This could happen if a tmux command produces some error
 # output (see issue #23 for example)
 @test "PROMPT_COMMAND does not print nothing on terminal" {
