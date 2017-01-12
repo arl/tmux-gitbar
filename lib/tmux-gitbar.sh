@@ -30,15 +30,15 @@ PREHASH_SYMBOL=":"
 
 # Defaut Tmux format strings for Git bar components.
 # Can be redefined here, or preferably in tmux-gitbar.conf
-BRANCH_FMT="#[fg=white]"
+BRANCH_FMT="#[fg=yellow]"
 UPSTREAM_FMT="#[fg=cyan]"
-REMOTE_FMT="#[fg=cyan]"
+REMOTE_FMT="#[fg=magenta]"
 CLEAN_FMT="#[fg=green,bold]"
-STAGED_FMT="#[fg=red,bold]"
+STAGED_FMT="#[fg=green,bold]"
 CONFLICTS_FMT="#[fg=red,bold]"
-CHANGED_FMT="#[fg=blue,bold]"
+CHANGED_FMT="#[fg=red,bold]"
 STASHED_FMT="#[fg=blue,bold]"
-UNTRACKED_FMT="#[fg=magenta,bold]"
+UNTRACKED_FMT="#[fg=yellow,bold]"
 RESET_FMT="#[fg=default]"
 
 # Delimiter between symbol and numeric value
