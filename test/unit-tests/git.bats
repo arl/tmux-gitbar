@@ -14,6 +14,11 @@ setup() {
   backup_pwd
 }
 
+teardown() {
+  restore_pwd
+  cleanup_test_repo
+}
+
 @test "detect when in a git working tree" {
   cd "$MOCKREPO"
   find_git_repo 
@@ -148,9 +153,4 @@ setup() {
   [ $status = 0 ]
   fields=($output)
   [ ${fields[8]} = 0 ]
-}
-
-teardown() {
-  restore_pwd
-  cleanup_test_repo
 }
