@@ -10,7 +10,7 @@ load "${ROOTDIR}/lib/tmux-gitbar.sh"
 load "${ROOTDIR}/scripts/helpers.sh"
 
 setup() {
-  create_test_repo
+  create_mock_repo
   backup_pwd
 }
 

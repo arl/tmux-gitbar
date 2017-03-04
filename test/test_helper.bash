@@ -8,8 +8,8 @@
 export MOCKREPO="${BATS_TMPDIR}/mock-repo"
 export ROOTDIR="${BATS_TEST_DIRNAME}/../.."
 
-create_test_repo() {
   backup_pwd
+create_mock_repo() {
 
   # create the 'remote' repository
   git init -q --bare "${MOCKREPO}.git"

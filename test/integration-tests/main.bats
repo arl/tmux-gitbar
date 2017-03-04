@@ -9,7 +9,7 @@ load "../test_helper"
 load "helpers/tmux_bats_helpers"
 
 setup() {
-  create_test_repo
+  create_mock_repo
   backup_pwd
 }
 
