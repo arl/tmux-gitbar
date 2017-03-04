@@ -11,11 +11,11 @@ load "${ROOTDIR}/scripts/helpers.sh"
 
 setup() {
   create_mock_repo
-  backup_pwd
+  pushd . > /dev/null
 }
 
 teardown() {
-  restore_pwd
+  popd > /dev/null
   cleanup_test_repo
 }
 

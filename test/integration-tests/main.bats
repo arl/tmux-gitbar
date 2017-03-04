@@ -10,7 +10,7 @@ load "helpers/tmux_bats_helpers"
 
 setup() {
   create_mock_repo
-  backup_pwd
+  pushd . > /dev/null
 }
 
 # Covers both modes of tmux-gitbar, in and out of a Git working tree,
@@ -60,6 +60,6 @@ setup() {
 }
 
 teardown() {
-  restore_pwd
+  popd > /dev/null
   cleanup_test_repo
 }

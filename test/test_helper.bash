@@ -8,8 +8,8 @@
 export MOCKREPO="${BATS_TMPDIR}/mock-repo"
 export ROOTDIR="${BATS_TEST_DIRNAME}/../.."
 
-  backup_pwd
 create_mock_repo() {
+  pushd . > /dev/null
 
   # create the 'remote' repository
   git init -q --bare "${MOCKREPO}.git"
@@ -31,18 +31,10 @@ create_mock_repo() {
   # set remote tracking and push
   git push --set-upstream origin master
 
-  restore_pwd
+  popd > /dev/null
 }
 
 cleanup_test_repo() {
   [ -d "${MOCKREPO}" ] && rm -rf "${MOCKREPO:?}"/
   [ -d "${MOCKREPO}.git" ] && rm -rf "${MOCKREPO}.git"/
-}
-
-backup_pwd() {
-  pushd . > /dev/null
-}
-
-restore_pwd() {
-  popd > /dev/null
 }
