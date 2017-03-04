@@ -154,3 +154,30 @@ teardown() {
   fields=($output)
   [ ${fields[8]} = 0 ]
 }
+
+@test "detect when there's a rebase in progress" {
+  cd "${MOCKREPO}"
+
+  # check there's no rebase in progress
+  run "${ROOTDIR}/scripts/gitstatus.sh" "$MOCKREPO"
+  [ $status = 0 ]
+  fields=($output)
+  [ ${fields[9]} = 0 ]
+
+  # add something to file1
+  echo a > file1 && git add file1 && git commit -m 'add a'
+  git push origin master
+  git checkout -b branch-2 HEAD~1
+
+  # in branch-2, add something else to file1
+  echo b > file1 && git add file1 && git commit -m 'add b'
+
+  # trigger a conflict during rebase
+  git rebase master
+
+  # check rebase has been detected
+  run "${ROOTDIR}/scripts/gitstatus.sh" "$MOCKREPO"
+  [ $status = 0 ]
+  fields=($output)
+  [ ${fields[9]} = 1 ]
+}
