@@ -10,17 +10,14 @@ export ROOTDIR="${BATS_TEST_DIRNAME}/../.."
 
 create_test_repo() {
 
-  working_tree="$MOCKREPO"
-  repo="${working_tree}.git"
-
   backup_pwd
 
   # create the repository
-  git init -q --bare "$repo"
+  git init -q --bare "${MOCKREPO}.git"
 
-  # clone it, creating our working tree
-  git clone -q "$repo" "$working_tree"
-  cd "$working_tree"
+  # clone it and cd in the working tree
+  git clone -q "${MOCKREPO}.git" "${MOCKREPO}"
+  cd "${MOCKREPO}" || exit 1
 
   # fake user for git operations
   git config user.email "tmux@git.bar"
@@ -38,11 +35,8 @@ create_test_repo() {
 
 cleanup_test_repo() {
 
-  working_tree="$MOCKREPO"
-  repo="${working_tree}.git"
-
-  [ -d "$working_tree" ] && rm -rf "$working_tree"/
-  [ -d "$repo" ] && rm -rf "$repo"/
+  [ -d "${MOCKREPO}" ] && rm -rf "${MOCKREPO:?}"/
+  [ -d "${MOCKREPO}.git" ] && rm -rf "${MOCKREPO}.git"/
 }
 
 backup_pwd() {
