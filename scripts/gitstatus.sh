@@ -92,7 +92,13 @@ if [[ -z "$upstream" ]] ; then
   upstream='^'
 fi
 
-printf "%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n" \
+# is there a rebase in progress?
+rebase=0
+if [ -d "$dir"/.git/rebase-merge ] || [ -d "$dir"/.git/rebase-apply ]; then
+  rebase=1
+fi
+
+printf "%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n" \
   "$branch" \
   "$remote" \
   "$upstream" \
@@ -101,4 +107,5 @@ printf "%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n" \
   $num_changed \
   $num_untracked \
   $num_stashed \
-  $clean
+  $clean \
+  $rebase
