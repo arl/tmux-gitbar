@@ -172,12 +172,15 @@ teardown() {
   # in branch-2, add something else to file1
   echo b > file1 && git add file1 && git commit -m 'add b'
 
-  # trigger a conflict during rebase
-  git rebase master
+  # trigger a conflict during rebase. 'run' is used here in 
+  # order to hide the exit code from bats (exit code is non-null 
+  # because of the conlict.
+  run git rebase master
 
   # check rebase has been detected
   run "${ROOTDIR}/scripts/gitstatus.sh" "$MOCKREPO"
   [ $status = 0 ]
   fields=($output)
+  echo "fields are"$fields
   [ ${fields[9]} = 1 ]
 }
