@@ -5,7 +5,9 @@
 #
 # Original script by:
 # Alan K. Stebbens <aks@stebbens.org> [http://github.com/aks]
-# slightly modified for tmux-gitbar
+#
+# Adapted for tmux-gitbar by Aurélien Rainone
+# [http://github.com/aurelien-rainone/tmux-gitbar]
 
 dir="$1"
 if [ ! -d "$1" ]; then
