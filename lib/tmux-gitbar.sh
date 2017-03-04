@@ -107,6 +107,7 @@ read_git_info() {
   git_num_untracked="${git_status_fields[6]}"
   git_num_stashed="${git_status_fields[7]}"
   git_clean="${git_status_fields[8]}"
+  git_rebase="${git_status_fields[9]}"
 }
 
 # Perform keyword interpolation on TMBG_STATUS_STRING, defined in the
@@ -152,11 +153,20 @@ do_interpolation() {
   flags="${SPLIT_DELIMITER_FMT}${clean_flag}${dirty_flags}"
 
   # Put it all together
-  local in="$1"
-  local s1="${in/$BRANCH_KWD/$branch}"
-  local s2="${s1/$REMOTE_KWD/$remote}"
-  local s3="${s2/$UPSTREAM_KWD/$upstream}"
-  local out="${s3/$FLAGS_KWD/$flags}"
+
+  if [[ "$git_rebase" == 1 ]]; then
+    # Handle 'rebase'
+    local in="$1"
+    local s1="${in/$BRANCH_KWD/${CONFLICTS_FMT}[rebase-in-progress]${CLEAN_FMT}$branch}"
+    local out="${s1/$FLAGS_KWD/$flags}"
+  else
+    # default case
+    local in="$1"
+    local s1="${in/$BRANCH_KWD/$branch}"
+    local s2="${s1/$REMOTE_KWD/$remote}"
+    local s3="${s2/$UPSTREAM_KWD/$upstream}"
+    local out="${s3/$FLAGS_KWD/$flags}"
+  fi
 
   echo "$out"
 }
