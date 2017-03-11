@@ -32,7 +32,7 @@ Show **Local** and **Remote** Git branches information:
    issue, or even better, a pull-request, in case you discover any kind of
    incompatibility with a tmux plugin you are using.
 
-**Customizable**
+**Customizable**  
 You can customize the content and the style of the Git status bar, this is all
 done in `tmux-gitbar.conf`, this file is auto-generated at first launch, in the
 installation directory.
