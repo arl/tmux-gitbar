@@ -54,6 +54,7 @@ installation directory.
   * [tmux-gitbar keywords](#tmux-gitbar-keywords)
   * [Status bar location](#status-bar-location)
   * [Status bar color](#status-bar-color)
+  * [Status bar delimiters](#status-bar-delimiters)
   * [Symbols](#symbols)
   * [Ignoring repositories](#ignoring-repositories)
 * [Troubleshooting](#troubleshooting)
@@ -319,6 +320,9 @@ Other credits for :
 
 
 # Changelog
+
+### v2.1.2, 2017-04-14
+- allow configuring status bar delimiters
 
 ### v2.1.1, 2016-11-23
 - add support for ignoring repositories through `.tmgbignore`
