@@ -54,7 +54,6 @@ installation directory.
   * [tmux-gitbar keywords](#tmux-gitbar-keywords)
   * [Status bar location](#status-bar-location)
   * [Status bar color](#status-bar-color)
-  * [Status bar delimiters](#status-bar-delimiters)
   * [Symbols](#symbols)
   * [Ignoring repositories](#ignoring-repositories)
 * [Troubleshooting](#troubleshooting)
