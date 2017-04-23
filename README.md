@@ -55,6 +55,7 @@ installation directory.
   * [Status bar location](#status-bar-location)
   * [Status bar color](#status-bar-color)
   * [Symbols](#symbols)
+  * [Delimiters](#delimiters)
   * [Ignoring repositories](#ignoring-repositories)
 * [Troubleshooting](#troubleshooting)
 * [Credits](#credits)
@@ -251,6 +252,16 @@ default '✖' (unicode 0x2716), simply add to your `tmux-gitbar.conf`:
 CONFLICT_SYMBOL="x"
 ```
 
+## Delimiters
+
+Delimiters between various information can be customized:
+
+ * `FLAGS_DELIMITER_FMT` delimits the different status flags
+ * `SYMBOL_DELIMITER_FMT` delimits the a status flag symbol with the
+    corresponding number
+ * `SPLIT_DELIMITER_FMT` delimits the status flags with the rest of the status
+    string.
+
 ## Ignoring Repositories
 
 You can ignore a repository by adding the file `.tmgbignore` to the root of the
@@ -307,6 +318,7 @@ from those 2 great projects:
 
 Contributers:
  - [AlexKornitzer][7]
+ - [roobert][8]
 
 Other credits for :
  - [tmux/tmux][1]
@@ -383,4 +395,5 @@ configuration.
 [5]: https://github.com/runsisi/consolas-font-for-powerline
 [6]: https://github.com/ekalinin/github-markdown-toc
 [7]: https://github.com/AlexKornitzer
+[8]: https://github.com/roobert
 
