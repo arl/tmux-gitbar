@@ -292,20 +292,48 @@ see if that is your case (in `tmux-gitbar.conf`).
 
 ## nothing is showing on tmux status bar...
 
-When inside a tmux window, run:
+### Check if your `$PROMPT_COMMAND` has been overwritten.
+
+To check this, open a tmux session and run:
+
 ```bash
 /path/to/tmux-gitbar/update-gitbar
 ```
-If now tmux-gitbar shows up, that means something (in your `.bashrc`?) might be
+
+If tmux-gitbar shows up, that means something (in your `.bashrc`?) might be
 overwriting the `$PROMPT_COMMAND` environment variable installed by tmux-gitbar.
 `$PROMPT_COMMAND` should be a concatenation of commands, as `$PATH` is a
 concatenation of paths.
+
+### Check if your `$PROMPT_COMMAND` has been overwritten (2).
+
+To check this, open a tmux session and run:
+
+```bash
+echo $PROMPT_COMMAND
+```
+
+If the output is `__vte_prompt_command` and only `__vte_prompt_command`, try
+to change or set `default-terminal` in your tmux configuration file (probably
+located at `~/.tmux.conf`):
+
+```
+set -g default-terminal "screen-256color"
+```
+
+This is a known issue, on various Linux distributions, of a script that comes
+with certain versions of `libvte`. It overwrites the user `$PROMPT_COMMAND`
+environment variable instead of concatenating to it. There are different
+workarounds, the easiest being not to set `default-terminal` to a string
+containing `xterm` nor `vte`, for example `screen-256color`.
+
 
 ## [file an issue](https://github.com/aurelien-rainone/tmux-gitbar/issues/new)
 
 Try to provide a maximum of context, at least:
  - the output of `tmux -V && echo $SHELL`
  - if possible, the content of your `.tmux.conf`
+ - the output of `echo $PROMPT_COMMAND` while inside a tmux session.
 
 Thanks!
 
