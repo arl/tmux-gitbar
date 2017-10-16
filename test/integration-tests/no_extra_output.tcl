@@ -4,11 +4,12 @@
 #
 #     This script tests that update-gitbar does not output nothing to stdout.
 #      - running update-gitbar in PROMPT_COMMAND should obviously not produce
-#        any output, even in case of error, as such output would be written 
-#        into the user terminal before executing any command.
+#        any output, even in case of error, as such output would be written
+#        into the user's terminal before executing any command.
+#
 # How does this test works?
 #
-# - Set the PS1 env var to PROMPT so that it is easily recognizable.
+# - Set the PS1 env var to PROMPT so that it is easily identifiable.
 # - run an *echo A* command on the terminal.
 # - check the output produced on the terminal, it should only contain, in this
 #   order:

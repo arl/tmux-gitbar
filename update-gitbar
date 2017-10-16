@@ -6,7 +6,8 @@
 # github.com/aurelien-rainone/tmux-gitbar
 
 main () {
-  local SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+  local SCRIPT_DIR
+  SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
   source "${SCRIPT_DIR}/lib/tmux-gitbar.sh"
 
   find_readlink
