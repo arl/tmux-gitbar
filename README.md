@@ -43,7 +43,7 @@ installation directory.
 
 # Table of Contents
 
-* [How-to install](#how-to-install)
+* [Installation](#installation)
   * [Default installation](#default-installation)
   * [Installing to another location](#installing-to-another-location)
   * [Configuration file](#configuration-file)
@@ -63,7 +63,7 @@ installation directory.
 * [Changelog](#changelog)
 
 
-# How-to install?
+# Installation
 
 You can install tmux-gitbar anywhere you want, although it's slightly easier to
 install it to the default location `$HOME/.tmux-gitbar`
