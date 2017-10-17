@@ -46,6 +46,7 @@ setup() {
 
 # Check that tmux-gitbar will detect .tmgbignore if present and hide
 @test "tmux-gitbar can ignore repo" {
+
   set_option_in_tmux_conf 'status-right' '#[fg=default,bg=default]status'
   expect -d "${BATS_TEST_DIRNAME}/tmux-gitbar_ignore.tcl"
 }
@@ -57,6 +58,18 @@ setup() {
 
   set_option_in_tmux_conf 'status' 'off'
   expect -d "${BATS_TEST_DIRNAME}/no_extra_output.tcl"
+}
+
+# Check that tmux-gitbar will show rebase-in-progress while rebasing
+@test "rebase-in-progress is shown while rebasing" {
+
+  gen_default_tmgb_conf
+
+  # configure tmux-gitbar in order to have 80 chars on the right
+  set_option_in_tmux_conf 'status-right-length' 80
+  set_option_in_tmux_conf 'status-right' ''
+
+  expect -d "${BATS_TEST_DIRNAME}/rebase_in_progress.tcl"
 }
 
 teardown() {
