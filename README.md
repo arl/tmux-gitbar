@@ -1,15 +1,16 @@
 
-[![Build status](https://travis-ci.org/aurelien-rainone/tmux-gitbar.svg?branch=master)](https://travis-ci.org/aurelien-rainone/tmux-gitbar)
+[![Build status](https://travis-ci.org/arl/tmux-gitbar.svg?branch=master)](https://travis-ci.org/arl/tmux-gitbar)
 
 tmux-gitbar: Git in tmux status bar
 ============
 
 ![tmux-gitbar
-demo](http://aurelien-rainone.github.io/tmux-gitbar/tmux-gitbar-demo.gif)
+demo](http://arl.github.io/tmux-gitbar/tmux-gitbar-demo.gif)
 
 [**tmux-gitbar**][2] shows the status of your git working tree, right in
 tmux status bar.
 
+**WARNING** this project was initially on `github.com/aurelien-rainone`, update your remotes to `github.com/arl`.
 
 # Features
 
@@ -76,7 +77,7 @@ Default installation directory is `$HOME/.tmux-gitbar`
 **Get the code**
 
 ```bash
-git clone https://github.com/aurelien-rainone/tmux-gitbar.git ~/.tmux-gitbar
+git clone https://github.com/arl/tmux-gitbar.git ~/.tmux-gitbar
 ```
 
 **Add this line to your `tmux.conf`**
@@ -93,7 +94,7 @@ Let's say you prefer to install **tmux-gitbar** in
 **Get the code**
 
 ```bash
-git clone https://github.com/aurelien-rainone/tmux-gitbar.git /path/to/tmux-gitbar
+git clone https://github.com/arl/tmux-gitbar.git /path/to/tmux-gitbar
 ```
 
 **Add these 2 lines to your `tmux.conf`**
@@ -136,27 +137,27 @@ the default `BRANCH_SYMBOL has been replaced.
 
 # Examples
 
-![tmux-gitbar demo](http://aurelien-rainone.github.io/tmux-gitbar/example1.png)
+![tmux-gitbar demo](http://arl.github.io/tmux-gitbar/example1.png)
  - on branch master
  - remote tracking origin/master
  - local master is 1 commit ahead of origin/master
  - there is 1 changed (not staged) file
  - there is 1 untracked file
 
-![tmux-gitbar demo](http://aurelien-rainone.github.io/tmux-gitbar/example2.png)
+![tmux-gitbar demo](http://arl.github.io/tmux-gitbar/example2.png)
  - on branch master
  - remote tracking origin/master
  - local master is 1 commit ahead of origin/master
  - the working tree is clean
 
-![tmux-gitbar demo](http://aurelien-rainone.github.io/tmux-gitbar/example3.png)
+![tmux-gitbar demo](http://arl.github.io/tmux-gitbar/example3.png)
  - working tree is on a 'detached HEAD' state
  - no remote tracking branch
  - can't report about the remote branch
  - there is 1 staged file
  - there is 1 stash entry
 
-![tmux-gitbar demo](http://aurelien-rainone.github.io/tmux-gitbar/example4.png)
+![tmux-gitbar demo](http://arl.github.io/tmux-gitbar/example4.png)
  - on branch master
  - remote tracking origin/master
  - local master has diverged by 7 commits, origin/master by 1
@@ -328,7 +329,7 @@ workarounds, the easiest being not to set `default-terminal` to a string
 containing `xterm` nor `vte`, for example `screen-256color`.
 
 
-## [file an issue](https://github.com/aurelien-rainone/tmux-gitbar/issues/new)
+## [file an issue](https://github.com/arl/tmux-gitbar/issues/new)
 
 Try to provide a maximum of context, at least:
  - the output of `tmux -V && echo $SHELL`
@@ -417,7 +418,7 @@ configuration.
 - Initial version
 
 [1]: https://github.com/tmux/tmux
-[2]: https://github.com/aurelien-rainone/tmux-gitbar
+[2]: https://github.com/arl/tmux-gitbar
 [3]: https://github.com/magicmonty/bash-git-prompt
 [4]: https://github.com/drmad/tmux-git
 [5]: https://github.com/runsisi/consolas-font-for-powerline
