@@ -25,7 +25,12 @@ num_untracked=0
 while IFS='' read -r line || [[ -n "$line" ]]; do
   status=${line:0:2}
   case "$status" in
-    '##') branch_line="${line/\.\.\./^}" ;;
+    '##')
+      if [[ $line = *"No commits yet"* ]]; then
+        # fixes #54 (garbage output on new repos)
+        line=$(echo $line | sed  "s/.*yet on //")
+      fi
+      branch_line="${line/\.\.\./^}" ;;
     ?M) ((num_changed++)) ;;
     U?) ((num_conflicts++)) ;;
     \?\?) ((num_untracked++)) ;;
