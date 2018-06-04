@@ -36,6 +36,19 @@ create_test_repo() {
   restore_pwd
 }
 
+create_void_repo() {
+
+  working_tree="$MOCKREPO"
+
+  backup_pwd
+
+  # create empty repository
+  git init "$working_tree"
+
+  restore_pwd
+}
+
+
 cleanup_test_repo() {
 
   working_tree="$MOCKREPO"
