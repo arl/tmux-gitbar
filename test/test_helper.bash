@@ -54,8 +54,8 @@ cleanup_test_repo() {
   working_tree="$MOCKREPO"
   repo="${working_tree}.git"
 
-  [ -d "$working_tree" ] && rm -rf "$working_tree"/
-  [ -d "$repo" ] && rm -rf "$repo"/
+  if [ -d "$working_tree" ]; then rm -rf "$working_tree"/; fi
+  if [ -d "$repo" ]; then rm -rf "$repo"/; fi
 }
 
 backup_pwd() {
