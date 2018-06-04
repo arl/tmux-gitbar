@@ -14,47 +14,6 @@ setup() {
   backup_pwd
 }
 
-@test "read local branch name" {
-  run "${ROOTDIR}/scripts/gitstatus.sh" "$MOCKREPO"
-  [ $status = 0 ]
-  fields=($output)
-  [ ${fields[0]} = 'master' ]
-}
-
-@test "detect when local and remote branches are even" {
-  run "${ROOTDIR}/scripts/gitstatus.sh" "$MOCKREPO"
-  [ $status = 0 ]
-  fields=($output)
-  [ ${fields[1]} = '.' ]
-}
-
-@test "detect when local branch is behind remote" {
-  cd "$MOCKREPO"
-  git rm file1 && git commit -m 'Add file1'
-  git push origin master
-  git reset --hard HEAD~1
-  run "${ROOTDIR}/scripts/gitstatus.sh" "$MOCKREPO"
-  [ $status = 0 ]
-  fields=($output)
-  [ ${fields[1]} = '_BEHIND_1' ]
-}
-
-@test "detect when local branch is ahead of remote" {
-  cd "$MOCKREPO"
-  git rm file1 && git commit -m 'Add file1'
-  run "${ROOTDIR}/scripts/gitstatus.sh" "$MOCKREPO"
-  [ $status = 0 ]
-  fields=($output)
-  [ ${fields[1]} = '_AHEAD_1' ]
-}
-
-@test "read upstream branch name" {
-  run "${ROOTDIR}/scripts/gitstatus.sh" "$MOCKREPO"
-  [ $status = 0 ]
-  fields=($output)
-  [ ${fields[2]} = 'origin/master' ]
-}
-
 @test "read number of staged files" {
   cd "$MOCKREPO"
   date > file1
