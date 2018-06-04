@@ -361,6 +361,12 @@ Other credits for :
 
 # Changelog
 
+### v2.1.4, 2018-06-04
+- fix #54: garbage output on newly created repositories.
+
+### v2.1.3, 2017-04-28
+- update README: libvte workaround (troubleshooting)
+
 ### v2.1.2, 2017-04-14
 - allow configuring status bar delimiters
 
