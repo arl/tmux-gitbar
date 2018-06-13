@@ -76,37 +76,30 @@ Default installation directory is `$HOME/.tmux-gitbar`
 
 **Get the code**
 
-```bash
-git clone https://github.com/arl/tmux-gitbar.git ~/.tmux-gitbar
-```
+    git clone https://github.com/arl/tmux-gitbar.git ~/.tmux-gitbar
 
 **Add this line to your `tmux.conf`**
 
-```bash
-source-file "$HOME/.tmux-gitbar/tmux-gitbar.tmux"
-```
+    source-file "$HOME/.tmux-gitbar/tmux-gitbar.tmux"
 
 That's it, next time you restart tmux and bash, **tmux-gitbar** will show when
 the current directory is managed by Git.
 
 
-## Installing to another location
+## Choosing another install location
 
 Let's say you prefer to install **tmux-gitbar** in
 `/path/to/tmux-gitbar`.
 
 **Get the code**
 
-```bash
-git clone https://github.com/arl/tmux-gitbar.git /path/to/tmux-gitbar
-```
+    git clone https://github.com/arl/tmux-gitbar.git /path/to/tmux-gitbar
 
 **Add these 2 lines to your `tmux.conf`**
 
-```bash
-TMUX_GITBAR_DIR="/path/to/tmux-gitbar"
-source-file "/path/to/tmux-gitbar/tmux-gitbar.tmux"
-```
+    TMUX_GITBAR_DIR="/path/to/tmux-gitbar"
+    source-file "/path/to/tmux-gitbar/tmux-gitbar.tmux"
+
 
 **Important:** `TMUX_GITBAR_DIR` environment variable **must be set** before
 sourcing `tmux-gitbar.tmux`.
