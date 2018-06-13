@@ -1,42 +1,42 @@
 
 [![Build status](https://travis-ci.org/arl/tmux-gitbar.svg?branch=master)](https://travis-ci.org/arl/tmux-gitbar)
 
-tmux-gitbar: Git in tmux status bar
+Tmux-GitBar: Nicely shows Git Status in Tmux.
 ============
 
-![tmux-gitbar
-demo](http://arl.github.io/tmux-gitbar/tmux-gitbar-demo.gif)
+![tmux-gitbar demo](http://arl.github.io/tmux-gitbar/tmux-gitbar-demo.gif)
 
 [**tmux-gitbar**][2] shows the status of your git working tree, right in
 tmux status bar.
 
-**WARNING** this project was initially on `github.com/aurelien-rainone`, update your remotes to `github.com/arl`.
+**Note** this project was initially on `github.com/aurelien-rainone`, update
+your remotes to `github.com/arl`.
 
 # Features
 
-Show **Local** and **Remote** Git branches information:
+If the working directory is managed by Git, tmux-gitbar will present Git status
+in a compact, discret and informative way, right in tmux status bar. When the
+working directory is not managed by git, tmux-gitbar gets out of the way.
+
+**Branches Info**
  - names of **local** and **remote** branches
- - divergence with upstream in number of commits
+ - number of commits before/after/divergent between them
 
-**Git Working tree status:**
- - immediately see if your working tree is *clean*
+**Working tree status**
+ - is your working tree *clean*?
  - number of changed, stashed, untracked files
- - conflicts
- - stash
- - tmux-gitbar disappears when current directory is not a Git working tree
+ - are there any conflicts?
 
-**Compatible** with other tmux **plugins**:
- - your tmux status bar remains unchanged when current directory is not part of
-   a Git tree.
- - inside a Git tree, **tmux-gitbar** concatenates Git status to the tmux
-   status bar. This is a new feature (since v2.0.0), so feel free to fill an
-   issue, or even better, a pull-request, in case you discover any kind of
-   incompatibility with a tmux plugin you are using.
+Nicely integrate into your existing tmux configuration
+ - your tmux status bar remains unchanged when current directory in not managed
+ by Git.
+ - when it shows, tmux-gitbar doesn't overwrite anything, instead it is appended
+ to the left (or prepended to the right) of tmux status bar.
 
 **Customizable**  
-You can customize the content and the style of the Git status bar, this is all
-done in `tmux-gitbar.conf`, this file is auto-generated at first launch, in the
-installation directory.
+**tmux-gitbar** has some sensible default, still you can fully customize what
+will be displayed, where and how, in `tmux-gitbar.conf`. This file is
+auto-generated at first launch, in the installation directory.
 
 <br>
 <br><br>
@@ -66,8 +66,8 @@ installation directory.
 
 # Installation
 
-You can install tmux-gitbar anywhere you want, although it's slightly easier to
-install it to the default location `$HOME/.tmux-gitbar`
+You can install tmux-gitbar anywhere you want, by default the location is your
+home directory.
 
 
 ## Default installation
@@ -85,6 +85,10 @@ git clone https://github.com/arl/tmux-gitbar.git ~/.tmux-gitbar
 ```bash
 source-file "$HOME/.tmux-gitbar/tmux-gitbar.tmux"
 ```
+
+That's it, next time you restart tmux and bash, **tmux-gitbar** will show when
+the current directory is managed by Git.
+
 
 ## Installing to another location
 
