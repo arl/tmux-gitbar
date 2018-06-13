@@ -329,6 +329,13 @@ workarounds, the easiest being not to set `default-terminal` to a string
 containing `xterm` nor `vte`, for example `screen-256color`.
 
 
+## Windows Subsystem for Linux
+
+Some users reported some symbols do not show up correctly with Bash on Windows,
+even when some additional font has been installed. Replace the offending symbols
+to solve this, see [Symbols](#symbols) and #49.
+
+
 ## [file an issue](https://github.com/arl/tmux-gitbar/issues/new)
 
 Try to provide a maximum of context, at least:
