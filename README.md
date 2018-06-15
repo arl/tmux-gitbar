@@ -27,14 +27,14 @@ the working directory is not managed by git, `tmux-gitbar` gets out of the way.
  - number of changed, stashed, untracked files
  - are there any conflicts?
 
-Integrate nicely and easily with your existing tmux configuration
- - tmux status is left untouched if current directory in not managed by Git.
- - when it do show, `tmux-gitbar` doesn't overwrite anything, instead it is
- appended to the left (or prepended to the right) of tmux status bar.
+Integrates **easily** and **discretely** with Tmux
+ - status bar is left untouched if current directory in not managed by Git.
+ - when it does show, `tmux-gitbar` doesn't overwrite anything, instead it
+ places itself at the leftmost, or righmost end of the status bar.
 
 **Customizable**  
-`tmux-gitbar` has some sensible default, still you can fully customize what
-will be displayed, where and how, in `tmux-gitbar.conf`. This file is
+`tmux-gitbar` has some sensible default, yet you can fully customize what
+will be displayed, where and how, in `tmux-gitbar.conf`, this file is
 auto-generated at first launch, in the installation directory.
 
 <br>
