@@ -1,7 +1,7 @@
 
 [![Build status](https://travis-ci.org/arl/tmux-gitbar.svg?branch=master)](https://travis-ci.org/arl/tmux-gitbar)
 
-Tmux-GitBar: Nicely shows Git Status in Tmux.
+Tmux-GitBar: shows Git Status in Tmux.
 ============
 
 ![tmux-gitbar demo](http://arl.github.io/tmux-gitbar/tmux-gitbar-demo.gif)
