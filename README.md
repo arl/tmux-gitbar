@@ -1,42 +1,41 @@
 
 [![Build status](https://travis-ci.org/arl/tmux-gitbar.svg?branch=master)](https://travis-ci.org/arl/tmux-gitbar)
 
-tmux-gitbar: Git in tmux status bar
+Tmux-GitBar: shows Git Status in Tmux.
 ============
 
-![tmux-gitbar
-demo](http://arl.github.io/tmux-gitbar/tmux-gitbar-demo.gif)
+![tmux-gitbar demo](http://arl.github.io/tmux-gitbar/tmux-gitbar-demo.gif)
 
 [**tmux-gitbar**][2] shows the status of your git working tree, right in
 tmux status bar.
 
-**WARNING** this project was initially on `github.com/aurelien-rainone`, update your remotes to `github.com/arl`.
+**Note** this project was initially on `github.com/aurelien-rainone/tmux-gitbar`, update
+your remotes to `github.com/arl/tmux-gitbar`.
 
 # Features
 
-Show **Local** and **Remote** Git branches information:
+If the working directory is managed by Git, `tmux-gitbar` will present Git
+status in a compact, discret and informative way, right in tmux status bar. When
+the working directory is not managed by git, `tmux-gitbar` gets out of the way.
+
+**Branches Info**
  - names of **local** and **remote** branches
- - divergence with upstream in number of commits
+ - number of commits before/after/divergent between them
 
-**Git Working tree status:**
- - immediately see if your working tree is *clean*
+**Working tree status**
+ - is your working tree *clean*?
  - number of changed, stashed, untracked files
- - conflicts
- - stash
- - tmux-gitbar disappears when current directory is not a Git working tree
+ - are there any conflicts?
 
-**Compatible** with other tmux **plugins**:
- - your tmux status bar remains unchanged when current directory is not part of
-   a Git tree.
- - inside a Git tree, **tmux-gitbar** concatenates Git status to the tmux
-   status bar. This is a new feature (since v2.0.0), so feel free to fill an
-   issue, or even better, a pull-request, in case you discover any kind of
-   incompatibility with a tmux plugin you are using.
+Integrates **easily** and **discretely** with Tmux
+ - status bar is left untouched if current directory in not managed by Git.
+ - when it does show, `tmux-gitbar` doesn't overwrite anything, instead it
+ places itself at the leftmost, or righmost end of the status bar.
 
 **Customizable**  
-You can customize the content and the style of the Git status bar, this is all
-done in `tmux-gitbar.conf`, this file is auto-generated at first launch, in the
-installation directory.
+`tmux-gitbar` has some sensible default, yet you can fully customize what
+will be displayed, where and how, in `tmux-gitbar.conf`, this file is
+auto-generated at first launch, in the installation directory.
 
 <br>
 <br><br>
@@ -66,8 +65,8 @@ installation directory.
 
 # Installation
 
-You can install tmux-gitbar anywhere you want, although it's slightly easier to
-install it to the default location `$HOME/.tmux-gitbar`
+You can install tmux-gitbar anywhere you want, by default the location is your
+home directory.
 
 
 ## Default installation
@@ -76,63 +75,59 @@ Default installation directory is `$HOME/.tmux-gitbar`
 
 **Get the code**
 
-```bash
-git clone https://github.com/arl/tmux-gitbar.git ~/.tmux-gitbar
-```
+    git clone https://github.com/arl/tmux-gitbar.git ~/.tmux-gitbar
 
-**Add this line to your `tmux.conf`**
+**Add this to `tmux.conf`**
 
-```bash
-source-file "$HOME/.tmux-gitbar/tmux-gitbar.tmux"
-```
+    source-file "$HOME/.tmux-gitbar/tmux-gitbar.tmux"
 
-## Installing to another location
+That's it, next time you restart tmux and bash, **tmux-gitbar** will show when
+the current directory is managed by Git.
+
+
+## Choosing another install location
 
 Let's say you prefer to install **tmux-gitbar** in
 `/path/to/tmux-gitbar`.
 
 **Get the code**
 
-```bash
-git clone https://github.com/arl/tmux-gitbar.git /path/to/tmux-gitbar
-```
+    git clone https://github.com/arl/tmux-gitbar.git /path/to/tmux-gitbar
 
-**Add these 2 lines to your `tmux.conf`**
+**Add this to `tmux.conf`**
 
-```bash
-TMUX_GITBAR_DIR="/path/to/tmux-gitbar"
-source-file "/path/to/tmux-gitbar/tmux-gitbar.tmux"
-```
+    TMUX_GITBAR_DIR="/path/to/tmux-gitbar"
+    source-file "/path/to/tmux-gitbar/tmux-gitbar.tmux"
 
-**Important:** `TMUX_GITBAR_DIR` environment variable **must be set** before
-sourcing `tmux-gitbar.tmux`.
-**Note:** Do not include the trailing slash.
+**Note:** `TMUX_GITBAR_DIR` environment variable **must be set** before sourcing
+`tmux-gitbar.tmux`. It should not have any trailing slash.
 
 
 ## Configuration file
 
-**tmux-gitbar** auto-generates its own configuration file at first launch
-and places it in `$HOME/.tmux-gitbar.conf`. If for whatever reasons you
-would like to store it somewhere else, or rename it, just define
-`$TMUX_GITBAR_CONF`.
+**tmux-gitbar** generates a default configuration file at first launch in
+`$HOME/.tmux-gitbar.conf`. If you prefer having it somewhere else you should set
+the new path in `$TMUX_GITBAR_CONF`.
 
-**Add this line to your `tmux.conf`**
+**Add this to `tmux.conf`**
 
-```bash
-TMUX_GITBAR_CONF="/path/to/.tmux-gitbar.conf"
-```
+    TMUX_GITBAR_CONF="/path/to/.tmux-gitbar.conf"
+
 
 ## Font
 
-The default tmux-gitbar configuration does not require you to install any
-additional font. If your default NIX installation does not allow you to
-visualize correctly the set of symbols, feel free to open an issue.
+The default `tmux-gitbar` configuration does not require you to install any
+additional font. If however some symbols don't show up or are incorrectly
+displayed, you should check that your terminal font supports the symbols used in
+`tmux-gitbar`.
 
-If you wish to change the appearance of tmux-gitbar by replacing one or more
-symbols, have a look at the [Symbols section](#symbols) of this README.
+All default symbols can be replaced.
 
-FYI, the font used in the screenshots is [consolas-font-for-powerline][5], and
-the default `BRANCH_SYMBOL has been replaced.
+See the [Symbols](#symbols) or [Troubleshooting](#troubleshooting) sections for
+more on this.
+
+FYI, the font shown in the screenshots is [consolas-font-for-powerline][5], and
+the default `BRANCH_SYMBOL` has been replaced.
 
 
 # Examples
@@ -166,28 +161,30 @@ the default `BRANCH_SYMBOL has been replaced.
 
 # Documentation
 
-Customizing the location and appearance of tmux-gitbar is realized in
-`tmux-gitbar.conf`, this file is auto-generated at first launch if it doesn't
-exist already.
+To cusstomize the location and appearance of `tmux-gitbar` you should see
+`tmux-gitbar.conf`, this file is generated at first launch with the default
+config.
 
 
 ## Status string
 
-The status string is defined by assembling keywords. The set of possible
-keywords is made of all the standard tmux keywords, plus 4 new git-specific
-ones:
+The status string takes care of the general appearance of the status bar,
+each keyword corresponds to a specific information of the Git status.
 
 Default status string is:
-```bash
-TMGB_STATUS_STRING="#{git_branch} - #{git_upstream} - #{git_remote} #{git_flags}"
-```
 
-|keyword| example | definition |
-|---|---|---|
-|`#{git_branch}`|`⭠ master`| local branch |
-|`#{git_upstream}`|`origin/master`|remote tracking branch|
-|`#{git_remote}`|`↓n`|local status regarding remote|
-|`#{git_flags}`|`●n ✚n` or `✔`| git status fields|
+    TMGB_STATUS_STRING="#{git_branch} - #{git_upstream} - #{git_remote} #{git_flags}"
+
+
+The status string can be made of any of the standard tmux keywords, plus 4 new
+Git specific ones:
+
+|     keyword     |     example    | definition 
+|:---------------:|:--------------:|-------------
+|`#{git_branch}`  |   `⭠ master`   | local branch
+|`#{git_upstream}`| `origin/master`| remote tracking branch
+|`#{git_remote}`  |     `↓n`       | local branch relative to upstream
+|`#{git_flags}`   |  `●n ✚n` or `✔`| git status fields
 
 
 ## tmux-gitbar keywords
@@ -198,29 +195,29 @@ Shows the `⭠` symbol followed by the local branch name.
 
  * `#{git_upstream}`
 
- Shows the name of remote tracking branch or `^` if you are not tracking any
- remote branch.
+Shows the name of remote _upstream_ branch or `^` if you are not tracking any
+remote branch.
 
  * `#{git_remote}`
 
-|symbol|meaning|
-|---|---|
-|`↑n`|local branch is ahead of remote by n commits|
-|`↓n`|local branch is behind remote by n commits|
-|`↓m↑n`|local and remote branches have diverged, yours by m commits, remote by n|
-|`L`|local branch only, not remotely tracked|
+|symbol| meaning
+|:----:|:------
+| `↑n` | local branch is ahead of remote by n commits
+| `↓n` | local branch is behind remote by n commits
+|`↓m↑n`| local and remote branches have diverged, yours by m commits, remote by n
+| `L`  | local branch only, not remotely tracked
 
  * `#{git_flags}`
 
-|symbol|meaning|
-|---|---|
-|`●n`|there are n staged files|
-|`✖n`|there are n files with merge conflicts|
-|`✚n`|there are n changed but unstaged files|
-|`…n`|there are n untracked files|
-|`⚑n`|there are n stash entries|
+|symbol|meaning
+|------|-------
+| `●n` | there are n staged files
+| `✖n` | there are n files with merge conflicts
+| `✚n` | there are n changed but unstaged files
+| `…n` | there are n untracked files
+| `⚑n` | there are n stash entries
 
-Flags with number being 0 are not shown.
+Flags are not shown if value is 0.
 The working tree is considered *clean* if all flags are 0, in this case a `✔`
 is shown.
 
@@ -228,9 +225,9 @@ is shown.
 ## Status bar location
 
 Accepts `left` of `right`. Default:
-```bash
-TMGB_STATUS_LOCATION=right
-```
+
+    TMGB_STATUS_LOCATION=right
+
 
 ## Status bar color
 
@@ -242,16 +239,15 @@ tmux-gitbar background color. Default is black.
 
  tmux-gitbar foreground color. Default is white.
 
+
 ## Symbols
 
-You can replace the default symbols with others. Symbols defined in
-`tmux-gitbar.conf` take precedence over the default ones.
-For example, if you want to use the `x` to represent conflicts, instead of the
-default '✖' (unicode 0x2716), simply add to your `tmux-gitbar.conf`:
+All symbols can be replaced. Symbols defined in `tmux-gitbar.conf` override
+default ones.  For example, if you want to use the `x` to represent conflicts,
+instead of the default '✖' (unicode `0x2716`), simply add to your `tmux-gitbar.conf`:
 
-```bash
-CONFLICT_SYMBOL="x"
-```
+    CONFLICT_SYMBOL="x"
+
 
 ## Delimiters
 
@@ -263,15 +259,15 @@ Delimiters between various information can be customized:
  * `SPLIT_DELIMITER_FMT` delimits the status flags with the rest of the status
     string.
 
+
 ## Ignoring Repositories
 
 You can ignore a repository by adding the file `.tmgbignore` to the root of the
 repository to be ignored. This will stop tmux-gitbar from showing for the
 targeted repository.
 
-```bash
-touch "/path/to/repo/.tmgbignore"
-```
+    touch "/path/to/repo/.tmgbignore"
+
 
 # Troubleshooting
 
@@ -291,42 +287,45 @@ set -g status-right ""
 By default tmux-gitbar shows on the right, set `left` in `tmux-gitbar.conf` to
 see if that is your case (in `tmux-gitbar.conf`).
 
+
 ## nothing is showing on tmux status bar...
 
 ### Check if your `$PROMPT_COMMAND` has been overwritten.
 
 To check this, open a tmux session and run:
 
-```bash
-/path/to/tmux-gitbar/update-gitbar
-```
+    /path/to/tmux-gitbar/update-gitbar
 
 If tmux-gitbar shows up, that means something (in your `.bashrc`?) might be
 overwriting the `$PROMPT_COMMAND` environment variable installed by tmux-gitbar.
 `$PROMPT_COMMAND` should be a concatenation of commands, as `$PATH` is a
 concatenation of paths.
 
+
 ### Check if your `$PROMPT_COMMAND` has been overwritten (2).
 
 To check this, open a tmux session and run:
 
-```bash
-echo $PROMPT_COMMAND
-```
+    echo $PROMPT_COMMAND
 
 If the output is `__vte_prompt_command` and only `__vte_prompt_command`, try
 to change or set `default-terminal` in your tmux configuration file (probably
 located at `~/.tmux.conf`):
 
-```
-set -g default-terminal "screen-256color"
-```
+    set -g default-terminal "screen-256color"
 
 This is a known issue, on various Linux distributions, of a script that comes
 with certain versions of `libvte`. It overwrites the user `$PROMPT_COMMAND`
 environment variable instead of concatenating to it. There are different
 workarounds, the easiest being not to set `default-terminal` to a string
 containing `xterm` nor `vte`, for example `screen-256color`.
+
+
+## Windows Subsystem for Linux
+
+Some users reported some symbols do not show up correctly with Bash on Windows,
+even when some additional font has been installed. Replace the offending symbols
+to solve this, see [Symbols](#symbols) and #49.
 
 
 ## [file an issue](https://github.com/arl/tmux-gitbar/issues/new)
@@ -337,6 +336,7 @@ Try to provide a maximum of context, at least:
  - the output of `echo $PROMPT_COMMAND` while inside a tmux session.
 
 Thanks!
+
 
 # Credits
 
