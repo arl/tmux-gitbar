@@ -361,6 +361,9 @@ Other credits for :
 
 # Changelog
 
+### v2.1.5, 2018-06-21
+- fix #57: git status still read when `.tmgbignore` found
+
 ### v2.1.4, 2018-06-04
 - fix #54: garbage output on newly created repositories.
 
