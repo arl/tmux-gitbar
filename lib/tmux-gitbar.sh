@@ -176,13 +176,13 @@ update_gitbar() {
 
   if [[ $git_repo ]]; then
 
-    read_git_info
-
     # Check if we ignore the repo
     if [[ -f "$git_repo/.tmgbignore" ]]; then
       reset_statusbar
       return
     fi
+
+    read_git_info
 
     # append Git status to current status string
     local status_string
