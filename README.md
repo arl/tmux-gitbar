@@ -9,8 +9,12 @@ Tmux-GitBar: shows Git Status in Tmux.
 [**tmux-gitbar**][2] shows the status of your git working tree, right in
 tmux status bar.
 
+**Important** this project is not maintained anymore because it has been recreated from scratch:
+[github.com/arl/gitmux](https://github.com/arl/gitmux) it's replacement is much simpler to install,
+to use and to maintain, works on all platforms where tmux works.
+
+
 **Note** this project was initially on `github.com/aurelien-rainone/tmux-gitbar`, update
-your remotes to `github.com/arl/tmux-gitbar`.
 
 # Features
 
